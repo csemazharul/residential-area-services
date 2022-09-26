@@ -1,9 +1,9 @@
-    <!-- ====== Footer Area ====== --> 
+ 
     <footer class="footer-area" style="background-image:url(assets/images/footer-bg.png)">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="widget widget_about yellow-color">    
+                    <div class="widget widget_about yellow-color">
                         <div class="widget-title-area">
                             <h3 class="widget-title">
                                 About House Rent
@@ -28,7 +28,7 @@
                             <li>Flat for Rent <a href="#">Cosgrave Ln</a></li>
                             <li>Flat for Rent <a href="#">Bourke St</a></li>
                             <li>Flat for Rent <a href="#">Flienders Ln</a></li>
-                        </ul> 
+                        </ul>
                     </div><!-- /.widget -->
                 </div><!-- /.col-md-4 -->
                 <div class="col-md-4">
@@ -37,7 +37,7 @@
                             <h3 class="widget-title">Instagram Image</h3><!-- /.widget-title -->
                         </div><!-- /.widget-title-area -->
                         <div class="instagram-image-content">
- 
+
 
                         </div><!-- /.instagram-image-content -->
                     </div><!-- /.widget -->
@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="bottom-content">
-                        <p>Copyright  &copy;2017 <a href="#">HTMLguru</a></p>
+                        <p>Copyright  &copy;2022 <a href="#">Residential area services</a></p>
                     </div><!-- /.bottom-top-content -->
                 </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
