@@ -47,7 +47,6 @@
 @include('./header')
 @yield('content')
 @include('./footer')
-	================================================== -->
 	<script src="{{asset('resources/frontend/assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
 	<script src="{{asset('resources/frontend/assets/js/plugins.js')}}"></script>
 	<script src="{{asset('resources/frontend/assets/js/main.js')}}"></script> <!-- main-js -->
