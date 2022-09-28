@@ -1,4 +1,4 @@
- 
+
     <footer class="footer-area" style="background-image:url(assets/images/footer-bg.png)">
         <div class="container">
             <div class="row">
@@ -6,11 +6,11 @@
                     <div class="widget widget_about yellow-color">
                         <div class="widget-title-area">
                             <h3 class="widget-title">
-                                About House Rent
+                                About Residential area services
                             </h3><!-- /.widget-title -->
                         </div><!-- /.widget-title-area -->
                         <div class="widget-about-content">
-                            <img src="{{asset('resources/frontend/assets/images/footer-logo.png')}}" alt="house" />
+                            <!-- <img src="{{asset('resources/frontend/assets/images/footer-logo.png')}}" alt="house" /> -->
                             <p>We Provide Premium Word Press, Ghost and HTML template. Our Perm tritium Templates is, develop gaped in a way so that the clients find  Support. Themes are developed in a way so that the clients find.</p>
                             <a href="#" class="button">More</a>
                         </div><!-- /.widget-content -->
