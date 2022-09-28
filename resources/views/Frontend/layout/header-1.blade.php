@@ -1,5 +1,4 @@
-    <!-- ====== Header Mobile Area ====== -->
-    <header class="mobile-header-area bg-gray-color hidden-md hidden-lg">
+<header class="mobile-header-area bg-nero hidden-md hidden-lg">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 tb">
@@ -13,7 +12,7 @@
                                         <span></span>
                                     </a>
                                     <span id="menu-marker"></span>
-                                </div>
+                                </div><!--/.menuexpandermain-->
                                 <div id="mobile-main-nav" class="main-navigation slideLeft">
                                     <div class="menu-wrapper">
                                         <div id="main-mobile-container" class="menu-content clearfix"></div>
@@ -27,15 +26,6 @@
                                                 </li>
                                             </ul>
                                         </div><!-- /.left-content -->
-                                        <div class="social-media">
-                                            <h5>Follow Us</h5>
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            </ul>
-                                        </div><!-- /.social-media -->
                                     </div>
                                 </div><!--/#mobile-main-nav-->
                             </div><!--/.mobile-menu-main-->
@@ -43,7 +33,7 @@
                         <div class="logo-area tb-cell">
                             <div class="site-logo">
                                 <a href="index-2.html">
-                                    <img src="{{asset('resources/frontend/assets/images/footer-logo.png')}}" alt="site-logo" />
+                                    <img src="{{asset('resources/frontend/assets/images/logo.png')}}" alt="site-logo" />
                                 </a>
                             </div><!-- /.site-logo -->
                         </div><!-- /.logo-area -->
@@ -60,22 +50,18 @@
     </header><!-- /.mobile-header-area --> 
 
     <!-- ====== Header Top Area ====== -->
-    <header class="header-area bg-gray-color style-two hidden-xs hidden-sm">
-    	<div class="container">
+    <header class="header-area bg-nero hidden-xs hidden-sm">
+        <div class="container">
             <div class="header-top-content">
-    			<div class="row">
-    				<div class="col-md-4 col-sm-4">
-    					<div class="social-media">
-    						<h5>Follow Us</h5>
-                            <ul>
-    							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-    							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-    							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-    						</ul>
-    					</div><!-- /.social-media -->
-    				</div><!-- /.col-md-4 -->
-                    <div class="col-md-8 col-sm-8">
+                <div class="row">
+                    <div class="col-md-7 col-sm-7 mobile-center">
+                        <div class="site-logo">
+                            <a href="index-2.html">
+                                <img src="{{asset('resources/frontend/assets/images/logo.png')}}" alt="site-logo" />
+                            </a>
+                        </div><!-- /.site-logo -->
+                    </div><!-- /.col-md-8 -->
+                    <div class="col-md-5 col-sm-5 mobile-center">
                         <div class="left-content">
                             <ul>
                                 <li>
@@ -92,25 +78,17 @@
                                 </li>
                             </ul>
                         </div><!-- /.left-content -->
-                    </div><!-- /.col-md-8 -->
-    			</div><!-- /.row -->
-    		</div><!-- /.container -->
-    	</div><!-- /.head-top-area -->
-    </header>
+                    </div><!-- /.col-md-4 -->
+                </div><!-- /.row -->
+            </div><!-- /.header-top-content -->
+        </div><!-- /.container -->
+    </header><!-- /.head-area -->
 
     <!-- ====== Header Bottom Content ====== -->
-	<header class="header-bottom-content style-two hidden-xs hidden-sm">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="site-logo">
-                        <a href="index-2.html">
-                            <!-- <img src="{{asset('resources/frontend/assets/images/footer-logo.png')}}" alt="house" /> -->
-                        </a>
-                    </div><!-- /.house-logo -->
-				</div><!-- /.col-md-4 -->
-
-				<div class="col-md-9 col-sm-9">
+    <header class="header-bottom-content bg-nero hidden-xs hidden-sm">
+        <div class="container">        
+            <div class="row">
+                <div class="col-md-10 col-sm-10">
                     <nav id="main-nav" class="site-navigation top-navigation">
                         <div class="menu-wrapper">
                             <div class="menu-content">
@@ -132,7 +110,20 @@
                                             </li>
                                         </ul>
                                     </li>
-                          
+                                    <li>
+                                        <a href="#">Pages</a>
+                                        <ul class="sub-menu">
+                                            <li>
+                                                <a href="gallery.html">Our Gallery</a>
+                                            </li>                                            
+                                            <li>
+                                                <a href="comming.html">Coming Soon</a>
+                                            </li>                                            
+                                            <li>
+                                                <a href="404.html">404</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li>
                                         <a href="about.html">About</a>
                                     </li>
@@ -154,10 +145,16 @@
                             </div> <!-- /.menu-content-->
                         </div> <!-- /.menu-wrapper --> 
                     </nav><!-- /.site-navigation --> 
-				</div><!-- /.col-md-8 -->
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</header><!-- /.header-bottom-area -->
+                </div><!-- /.col-md-10 -->
+
+                <div class="col-md-2 col-sm-2">
+                    <div class="booking">
+                        <span><a href="booking.html">Booking</a></span>
+                    </div><!-- /.Booking -->
+                </div><!-- /.col-md-2 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </header><!-- /.header-bottom-content --> 
 
     <!-- ====== Header Overlay Content ====== -->
     <div class="header-overlay-content">
@@ -327,3 +324,79 @@
             </div> <!-- cd-user-modal-container -->
         </div> <!-- cd-user-modal -->
     </div><!-- /.header-overlay-content -->
+
+	<!-- ====== Google Map Area ====== --> 
+	<div class="google-map-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="map-content">
+					<iframe height="855" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC871wKM6aoCLSV_pT3xBVsYzNGXaDh7Pw&amp;q=121King+St,Melbourne+VIC+3000,Australia" allowfullscreen="allowfullscreen"></iframe>
+				</div><!-- /.map-content -->
+	            
+				<div class="contact-area contact-background">
+					<div class="contact">
+					    <h4><i class="fa fa-phone-square"></i>Call</h4>
+					    <p>+88 0215469875</p>
+					</div><!-- /.contact -->
+
+                    <div class="contact">
+                        <h4><i class="fa fa-envelope"></i>Mail</h4>
+                        <p>yourmail@gmail.com </p>
+                    </div><!-- /.contact -->
+                    <div class="contact">
+                        <h4><i class="fa fa-user"></i>Social account</h4>
+                        <div class="social-icon">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                        </div><!-- /.Social-icon -->
+                    </div><!-- /.contact -->
+                </div><!-- /.contact-area -->
+	        </div><!-- /.row -->
+		</div><!-- /.container-fluid -->
+	</div><!-- /.google-map-area -->
+
+    <!-- ====== Call To Action ====== --> 
+	<div class="call-to-action style-two transfarent-white-bg with-map">
+		<div class="container">
+			<div class="row tb">
+				<div class="col-md-6 tb-cell">
+					<div class="left-content">
+						<h3>Do you want to Rent your House</h3>
+						<h4>Call us and list your property here</h4>
+					</div><!-- /.left-content -->
+				</div><!-- /.col-md-6 -->
+				<div class="col-md-6 tb-cell">
+					<div class="right-content">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="contact-left">
+									<h4>+880123654987<a href="#"><span>company@gmail.com</span></a></h4>
+								</div><!-- /.contact -->
+							</div><!-- /.col-md-6 -->
+							<div class="col-md-6">
+								<div class="contact">
+									<a href="#">Contact us</a>
+								</div><!-- /.contact-tight -->
+							</div><!-- /.col-md-6 -->
+						</div><!-- /.row -->
+					</div><!-- /.right-content -->
+				</div><!-- /.col-md-6 -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</div><!-- /.slider-bottom-area -->
+
+	<!-- ====== Heading Section ====== --> 
+	<div class="heading-section bg-gray-color">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="heading-content-one border">
+						<h2 class="title">House &amp; Apartments</h2>
+						<h5 class="sub-title">Find Your Rooms, for your abaility</h5>
+					</div><!-- /.Apartments-heading-content -->
+				</div><!-- /.col-md-12 -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</div><!-- /.heading-section -->
