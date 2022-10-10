@@ -930,6 +930,4 @@
     </div><!-- /.Blog-area-->
 	@endsection
 
- @section('content')
-     <p>This is my body content.</p>
- @endsection
+
