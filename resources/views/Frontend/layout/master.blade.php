@@ -47,7 +47,36 @@
 @include('./Frontend/layout/header')
 @yield('content')
 @include('./Frontend/layout/footer')
-	
+	<!-- Messenger Chat plugin Code -->
+	<div id="fb-root"></div>
+
+<!-- Your Chat plugin code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+	var chatbox = document.getElementById('fb-customer-chat');
+	chatbox.setAttribute("page_id", "101643075391651");
+	chatbox.setAttribute("attribution", "biz_inbox");
+</script>
+
+<!-- Your SDK code -->
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			xfbml            : true,
+			version          : 'v15.0'
+		});
+	};
+
+	(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
 	<script src="{{asset('resources/frontend/assets/js/vendor/jquery-1.12.4.min.js')}}"></script>
 	<script src="{{asset('resources/frontend/assets/js/plugins.js')}}"></script>
 	<script src="{{asset('resources/frontend/assets/js/main.js')}}"></script> <!-- main-js -->
