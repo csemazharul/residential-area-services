@@ -20,20 +20,20 @@
                                         <div class="left-content">
                                             <ul>
                                                 <li>
-                                                    <a href="#"><i class="fa fa-phone-square"></i>Call Us - 01623 030020</a>
+                                                    <a href="{{url('/')}}"><i class="fa fa-phone-square"></i>Call Us - 01623 030020</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" class="cd-signin"><i class="fa fa-address-book"></i>Login / Register</a>
+                                                    <a href="{{url('/')}}" class="cd-signin"><i class="fa fa-address-book"></i>Login / Register</a>
                                                 </li>
                                             </ul>
                                         </div><!-- /.left-content -->
                                         <div class="social-media">
                                             <h5>Follow Us</h5>
                                             <ul>
-                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                <li><a href="{{url('/')}}"><i class="fa fa-instagram"></i></a></li>
+                                                <li><a href="{{url('/')}}"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="{{url('/')}}"><i class="fa fa-facebook"></i></a></li>
+                                                <li><a href="{{url('/')}}"><i class="fa fa-twitter"></i></a></li>
                                             </ul>
                                         </div><!-- /.social-media -->
                                     </div>
@@ -48,10 +48,10 @@
                             </div><!-- /.site-logo -->
                         </div><!-- /.logo-area -->
                         <div class="search-block tb-cell">
-                            <a href="#" class="main-search"><i class="fa fa-search"></i></a>
+                            <a href="{{url('/')}}" class="main-search"><i class="fa fa-search"></i></a>
                         </div><!-- /.search-block -->
                         <div class="additional-content tb-cell">
-                            <a href="#" class="trigger-overlay"><i class="fa fa-sliders"></i></a>
+                            <a href="{{url('/')}}" class="trigger-overlay"><i class="fa fa-sliders"></i></a>
                         </div><!-- /.additional-content -->
                     </div><!-- /.mobile-header-block -->
                 </div><!-- /.col-md-12 -->
@@ -68,10 +68,10 @@
     					<div class="social-media">
     						<h5>Follow Us</h5>
                             <ul>
-    							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-    							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-    							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    							<li><a href="{{url('/')}}"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="{{url('/')}}"><i class="fa fa-heart"></i></a></li>
+    							<li><a href="{{url('/')}}"><i class="fa fa-facebook"></i></a></li>
+    							<li><a href="{{url('/')}}"><i class="fa fa-twitter"></i></a></li>
     						</ul>
     					</div><!-- /.social-media -->
     				</div><!-- /.col-md-4 -->
@@ -79,16 +79,16 @@
                         <div class="left-content">
                             <ul>
                                 <li>
-                                    <a href="#"><i class="fa fa-phone-square"></i>Call Us - 01623 030020</a>
+                                    <a href="{{url('/')}}"><i class="fa fa-phone-square"></i>Call Us - 01623 030020</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="cd-signin"><i class="fa fa-address-book"></i>Login / Register</a>
+                                    <a href="{{url('/')}}" class="cd-signin"><i class="fa fa-address-book"></i>Login / Register</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="main-search"><i class="fa fa-search"></i></a>
+                                    <a href="{{url('/')}}" class="main-search"><i class="fa fa-search"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="trigger-overlay"><i class="fa fa-bars"></i></a>
+                                    <a href="{{url('/')}}" class="trigger-overlay"><i class="fa fa-bars"></i></a>
                                 </li>
                             </ul>
                         </div><!-- /.left-content -->
@@ -116,13 +116,10 @@
                             <div class="menu-content">
                                 <ul class="menu-list">
                                     <li>
-                                        <a href="#">Home</a>
+                                        <a href="{{url('/')}}">Home</a>
                                     </li>
                                     <li>
-                                        <a href="booking.html">Booking</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">House</a>
+                                        <a href="{{url('/')}}">House</a>
                                         <ul class="sub-menu">
                                             <li>
                                                 <a href="apartment.html">All Apartment</a>
@@ -134,21 +131,11 @@
                                     </li>
                           
                                     <li>
-                                        <a href="about.html">About</a>
+                                        <a href="{{url('about-us')}}">About</a>
                                     </li>
+
                                     <li>
-                                        <a href="#">Blog</a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="blog.html">Blog</a>
-                                            </li>                                            
-                                            <li>
-                                                <a href="blog-single.html">Single Post</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">Contact</a>
+                                        <a href="{{url('contact-us')}}">Contact</a>
                                     </li>
                                 </ul> <!-- /.menu-list -->
                             </div> <!-- /.menu-content-->
@@ -166,27 +153,27 @@
             <button type="button" class="overlay-close">Close</button>
             <nav>
                 <ul class="overlay-menu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a>
+                    <li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('/')}}">About</a>
                         <ul class="sub-menu">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Work</a></li>
-                            <li><a href="#">Clients</a>
+                            <li><a href="{{url('/')}}">Home</a></li>
+                            <li><a href="{{url('/')}}">About</a></li>
+                            <li><a href="{{url('/')}}">Work</a></li>
+                            <li><a href="{{url('/')}}">Clients</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Work</a></li>
-                                    <li><a href="#">Clients</a></li>
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="{{url('/')}}">Home</a></li>
+                                    <li><a href="{{url('/')}}">About</a></li>
+                                    <li><a href="{{url('/')}}">Work</a></li>
+                                    <li><a href="{{url('/')}}">Clients</a></li>
+                                    <li><a href="{{url('/')}}">Contact</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Contact</a></li>
+                            <li><a href="{{url('/')}}">Contact</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Work</a></li>
-                    <li><a href="#">Clients</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{url('/')}}">Work</a></li>
+                    <li><a href="{{url('/')}}">Clients</a></li>
+                    <li><a href="{{url('/')}}">Contact</a></li>
                 </ul>
             </nav>
         </div> <!-- /.overlay-menu-item -->
