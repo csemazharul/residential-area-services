@@ -30,7 +30,7 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
                 <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i
-                            class="fa fa-user"></i> {{Auth::guard('auth')->user()->name}}</a>
+                            class="fa fa-user"></i> {{Auth::guard('admin')->user()->name}}</a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
                     <a class="dropdown-item" href="{{route('password.request')}}"> Password Settings</a>
                     <a class="dropdown-item" href="{{route('logout')}}"> Logout</a>
