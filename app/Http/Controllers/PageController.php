@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Districts;
 use App\Models\Divisions;
 use App\Models\Unions;
@@ -37,6 +38,11 @@ class PageController extends Controller
     public function unions($id){
         $division = Unions::find($id);
         return view('frontend.division', compact('division'));
+    }
+
+    public function categories(){
+        $categories=Category::all();
+        return view('frontend.category',compact('categories'));
     }
 
 }
