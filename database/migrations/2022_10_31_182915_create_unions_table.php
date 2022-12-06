@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('bn_name')->nullable();
             $table->string('url',50)->nullable();
-            $table->foreignId('upazilla_id')->constrained('upazilas')->onDelete('cascade');
+            $table->foreignId('upazila_id')->constrained('upazilas')->onDelete('cascade');
             $table->timestamps();
         });
     }
