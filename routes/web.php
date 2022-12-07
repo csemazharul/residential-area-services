@@ -41,6 +41,7 @@ Route::middleware(['auth', 'role:Administrator'])->name('admin.')->prefix('admin
 Route::get('get-district/{division_id}', [HelperController::class, 'getDistrict'])->name('get-district');
 Route::get('get-upazila/{district_id}', [HelperController::class, 'getUpazila'])->name('get-upazila');
 Route::get('get-union/{upazila_id}', [HelperController::class, 'getUnion'])->name('get-union');
+Route::get('/categories', [PageController::class, 'categories'])->name('categories');
 
 require __DIR__ . '/auth.php';
 require __DIR__.'/admin.php';
