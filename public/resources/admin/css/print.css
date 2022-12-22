@@ -1,0 +1,11 @@
+@media print {
+    .navbar .navbar-expand .navbar-dark .bg-primary{
+        display: none;
+    }
+    .sidebar .list-unstyled{
+        display: none !important;
+    }
+    .sidebar {
+        margin-left: -230px !important;
+    }
+}

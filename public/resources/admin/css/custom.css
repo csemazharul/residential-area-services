@@ -1,0 +1,15 @@
+.textDecoration{
+    text-decoration: none !important;
+}
+
+.toggle-handle{
+    background: white;
+}
+.error{
+    color: #ff3224;
+    font-weight: bold;
+}
+
+.help-block{
+    color: #ff3224;
+}
