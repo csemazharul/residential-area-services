@@ -52,7 +52,7 @@
                             <div class="row">
                                 @foreach ($services as $service)
                                 @php
-                                $service_image = preg_replace('/[\]["]/i', '', $service->image);
+                                $service_image = preg_replace('/[\]["]/i', '', $service->serviceDetails->image);
                                 $images = explode(',', str_replace( '\\', '', $service_image ));
                                 $image=is_array($images)?$images[0]:$images;
                                 
@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="service-content">
                                             <h3 class="title">
-                                                <a href="service-details.html">{{$service->name}}</a>
+                                                <a href="service-details.html">{{$service->serviceDetails->name}}</a>
                                             </h3>
                                             <div class="rating">
                                                 <i
@@ -110,7 +110,7 @@
                                                     <div class="row">
                                                         <div class="col">
                                                             <a
-                                                                href="edit-service.html"
+                                                                href="{{route('services.edit', $service->id)}}")}}"
                                                                 class="text-success"
                                                                 ><i
                                                                     class="far fa-edit"
