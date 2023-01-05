@@ -23,7 +23,7 @@
 											</div>
 											<div class="form-group col-xl-12">
 												<div class="media align-items-center mb-3 d-flex">
-													<img class="user-image" src="resources/frontend/assets/img/customer/user-01.jpg" alt="">
+													<img class="user-image" src="{{asset('resources/frontend/assets/img/customer/user-01.jpg')}}" alt="">
 													<div class="media-body">
 														<h5 class="mb-0">Test User</h5>
 														<p>Max file size is 20mb</p>

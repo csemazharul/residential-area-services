@@ -15,17 +15,7 @@
 									</a>
 								</li>
 								<li class="nav-item current">
-									<a href="{{url('/service-provider/services/create')}}" class="nav-link active">
-										<i class="fab fa-servicestack"></i> <span>Services</span>
-									</a>
-								</li>
-								<!-- <li class="nav-item current">
-									<a href="{{url('/user/favourites')}}" class="nav-link active">
-										<i class="fas fa-heart"></i> <span>Favourites</span>
-									</a>
-								</li> -->
-								<li class="nav-item current">
-									<a href="{{url('/user/booking')}}" class="nav-link">
+									<a href="{{route('user.bookings')}}" class="nav-link">
 										<i class="far fa-calendar-check"></i> <span>My Bookings</span>
 									</a>
 								</li>
@@ -35,12 +25,12 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="user-wallet.html" class="nav-link">
-										<i class="far fa-money-bill-alt"></i> <span>Wallet</span>
+									<a href="{{route('user.favorites')}}" class="nav-link">
+										<i class="fas fa-heart"></i> <span>Favourites</span>
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="user-reviews.html" class="nav-link">
+									<a href="{{route('user.reviews')}}" class="nav-link">
 										<i class="far fa-star"></i> <span>Reviews</span>
 									</a>
 								</li>
