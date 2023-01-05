@@ -4,20 +4,95 @@
 
  @section('content')
 
-     <!-- ====== Page Header ====== --> 
-     <div class="page-header default-template-gradient">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">                
-                    <h2 class="page-title">Contact</h2>
-                    <p class="page-description">Contact with us</p>        
-                </div><!-- /.col-md-12 -->
-            </div><!-- /.row-->
-        </div><!-- /.container-fluid -->           
-    </div><!-- /.page-header -->
-
-   <!-- ====== Breadcrumbs Area======= --> 
-   <div class="breadcrumbs-area">
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="breadcrumb-title">
+							<h2>Send</h2>
+						</div>
+					</div>
+	
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+		
+		<section class="contact-us">
+			<div class="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="contact-queries">
+								<h4 class="mb-4">Drop your Queries</h4>
+								<div class="row">
+									<div class="form-group col-xl-6">
+										<label class="me-sm-2">First Name</label>
+										<input class="form-control" type="text" >
+									</div>
+									<div class="form-group col-xl-6">
+										<label class="me-sm-2">Last Name</label>
+										<input class="form-control" type="text" >
+									</div>
+									<div class="form-group col-xl-6">
+										<label class="me-sm-2">Email</label>
+										<input class="form-control" type="email" >
+									</div>
+									<div class="form-group col-xl-6">
+										<label class="me-sm-2">Mobile Number</label>
+										<input class="form-control" type="text" >
+									</div>
+									<div class="form-group col-xl-12">
+										<label class="me-sm-2">Message</label>
+										<textarea class="form-control" rows="5"></textarea>
+									</div>
+									<div class="col-xl-12 mb-4">
+										<button class="btn btn-primary btn-lg ps-5 pe-5" type="submit">Update</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="contact-details">
+								<div class="contact-info">
+									<i class="fas fa-map-marker-alt"></i>
+									<div class="contact-data">
+										<h4>Address</h4>
+										<p>#house 12/A, Nasirabad, CTG, Bangaldesh.</p>
+									</div>
+								</div>
+								<hr>
+								<div class="contact-info">
+									<i class="fas fa-phone-alt"></i>
+									<div class="contact-data">
+										<h4>Phone</h4>
+										<p>+88 01833445566</p>
+										<p>+88 01933445566</p>
+									</div>
+								</div>
+								<hr>
+								<div class="contact-info">
+									<i class="fab fa-skype"></i>
+									<div class="contact-data">
+										<h4>Skype</h4>
+										<p>house.skype</p>
+									</div>
+								</div>
+								<hr>
+								<div class="contact-info">
+									<i class="far fa-envelope"></i>
+									<div class="contact-data">
+										<h4>Email</h4>
+										<p><a href="https://residential-area-services.dev/l/email-protection" class="__cf_email__" data-cfemail="e0949295858c9993858c8ca08598818d908c85ce838f8d">support@gmail.com/a></p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -31,96 +106,5 @@
             </div><!-- /.row -->
         </div><!-- /.container -->
     </div><!-- /.breadcrumbs-area -->
-
-    <!-- ====== Map Area====== --> 
-    <div class="map-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="heading-content-one">
-                       <h5>Find Our location</h5>
-                       <h2 class="title default-text-gradient">Map &amp; Directions</h2>
-                       <p>Find out how to find us from your current location</p>
-                    </div><!-- /.about-heading-content -->
-                    <div class="map-content">
-                        <iframe height="550" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyC871wKM6aoCLSV_pT3xBVsYzNGXaDh7Pw&amp;q=121King+St,Melbourne+VIC+3000,Australia" allowfullscreen="allowfullscreen"></iframe>
-                    </div><!-- /.map-content -->
-                </div><!-- /.col-md-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.map-content-area -->
-
-    <!-- ====== Contact Us Area ====== --> 
-    <div class="contact-us-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="heading-content-one">
-                        <h2 class="title default-text-gradient">Contact us<br/> live</h2>
-                    </div><!-- /.heading-content-one -->
-                </div><!-- /.col-md-12 -->
-            </div><!-- /.row -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="contact-us-content-left">
-                        <div class="contact">
-                            <h4><i class="fa fa-map-marker"></i>Address</h4>
-                            <p>121 King St, Melbourne VIC <br> 3000, Australia</p>
-                        </div><!-- /.contact -->
-                    
-                        <div class="contact">
-                            <h4><i class="fa fa-envelope"></i>Mall</h4>
-                            <p>yourmail@gmail.com <br> houserentmail@gmail.com</p>
-                        </div><!-- /.contact -->
-                
-                    
-                        <div class="contact">
-                            <h4><i class="fa fa-volume-control-phone"></i>Call</h4>
-                            <p>+88 0215469875 <br> 666 35874692050</p>
-                        </div><!-- /.contact -->
-                    
-                        <div class="contact">
-                            <h4><i class="fa fa-user"></i>Social account</h4>
-                            <div class="social-icon">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                            </div><!-- /.Social-icon -->
-                        </div><!-- /.contact -->
-                    </div><!-- /.contactus-content-left -->
-                </div><!-- /.col-md-4 -->
-                
-                <div class="col-md-8">
-                    <div class="contact-us-content-right">
-                        <form action="#">
-                            <h3>Have a question</h3>
-                            <img src="assets/images/envelope.jpg" alt="envelope" />
-                            <div class="input-content clearfix">
-                                <h4>Send Us A email</h4>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <input type="text" placeholder="Name*" class="form-control">
-                                    </div><!-- /.col-sm-6 -->
-                                    <div class="col-sm-6">
-                                        <input type="email" placeholder="Email*" class="form-control Email">
-                                    </div><!-- /.col-sm-6 -->
-                                    <div class="col-md-12">
-                                        <input type="search" placeholder="Website*" class="form-control website">
-                                    </div><!-- /.col-md-12 -->
-                                    <div class="col-md-12">
-                                        <textarea rows="2" cols="80">your massage</textarea>
-                                    </div><!-- /.col-md-12 -->
-                                </div><!-- /.row -->
-                                <div class="subimt-button clearfix">
-                                    <input type="submit" value="Submit" class="submit default-template-gradient">
-                                </div><!-- /.subimt -->
-                            </div><!-- /.input-content -->
-                        </form>
-                    </div><!-- /.contactus-content-right -->
-                </div><!-- /.col-md-8 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </div><!-- /.contact-us-area -->
 
     @endsection

@@ -1,322 +1,206 @@
-    <!-- ====== Header Mobile Area ====== -->
-    <header class="mobile-header-area bg-gray-color hidden-md hidden-lg">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 tb">
-                    <div class="mobile-header-block">
-                        <div class="menu-area tb-cell">
-                            <!--Mobile Main Menu-->
-                            <div class="mobile-menu-main hidden-md hidden-lg">
-                                <div class="menucontent overlaybg"></div>
-                                <div class="menuexpandermain slideRight">
-                                    <a id="navtoggole-main" class="animated-arrow slideLeft menuclose">
-                                        <span></span>
-                                    </a>
-                                    <span id="menu-marker"></span>
-                                </div>
-                                <div id="mobile-main-nav" class="main-navigation slideLeft">
-                                    <div class="menu-wrapper">
-                                        <div id="main-mobile-container" class="menu-content clearfix"></div>
-                                        <div class="left-content">
-                                            <ul>
-                                                <li>
-                                                    <a href="{{url('/login')}}"><i class="fa fa-phone-square"></i>Call Us - 01623 030020</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{url('/register')}}" class="cd-signin"><i class="fa fa-address-book"></i>Register</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{url('/register')}}" class="cd-signin"><i class="fa fa-address-book"></i>Login </a>
-                                                </li>
-                                            </ul>
-                                        </div><!-- /.left-content -->
-                                        <div class="social-media">
-                                            <h5>Follow Us</h5>
-                                            <ul>
-                                                <li><a href="{{url('/')}}"><i class="fa fa-instagram"></i></a></li>
-                                                <li><a href="{{url('/')}}"><i class="fa fa-heart"></i></a></li>
-                                                <li><a href="{{url('/')}}"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="{{url('/')}}"><i class="fa fa-twitter"></i></a></li>
-                                            </ul>
-                                        </div><!-- /.social-media -->
-                                    </div>
-                                </div><!--/#mobile-main-nav-->
-                            </div><!--/.mobile-menu-main-->
-                        </div><!-- /.menu-area -->
-                        <div class="logo-area tb-cell">
-                            <div class="site-logo">
-                                <a href="index-2.html">
-                                    <img src="{{asset('resources/frontend/assets/images/footer-logo.png')}}" alt="site-logo" />
-                                </a>
-                            </div><!-- /.site-logo -->
-                        </div><!-- /.logo-area -->
-                        <div class="search-block tb-cell">
-                            <a href="{{url('/')}}" class="main-search"><i class="fa fa-search"></i></a>
-                        </div><!-- /.search-block -->
-                        <div class="additional-content tb-cell">
-                            <a href="{{url('/')}}" class="trigger-overlay"><i class="fa fa-sliders"></i></a>
-                        </div><!-- /.additional-content -->
-                    </div><!-- /.mobile-header-block -->
-                </div><!-- /.col-md-12 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </header><!-- /.mobile-header-area --> 
+<style>
+	.color-nav-link{
+		color: black !important;
+	}
+</style>
 
-    <!-- ====== Header Top Area ====== -->
-    <header class="header-area bg-gray-color style-two hidden-xs hidden-sm">
-    	<div class="container">
-            <div class="header-top-content">
-    			<div class="row">
-    				<div class="col-md-4 col-sm-4">
-    					<div class="social-media">
-    						<h5>Follow Us</h5>
-                            <ul>
-    							<li><a href="{{url('/')}}"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="{{url('/')}}"><i class="fa fa-heart"></i></a></li>
-    							<li><a href="{{url('/')}}"><i class="fa fa-facebook"></i></a></li>
-    							<li><a href="{{url('/')}}"><i class="fa fa-twitter"></i></a></li>
-    						</ul>
-    					</div><!-- /.social-media -->
-    				</div><!-- /.col-md-4 -->
-                    <div class="col-md-8 col-sm-8">
-                        <div class="left-content">
-                            <ul>
-                                <li>
-                                    <a href="{{url('/')}}"><i class="fa fa-phone-square"></i>Call Us - 01623 030020</a>
-                                </li>
-                                <li>
-                                    <a href="{{url('/register')}}" class=""><i class="fa fa-address-book"></i> Register</a>
-                                </li>
-                                <li>
-                                    <a href="{{url('/login')}}" class=""><i class="fa fa-lock"></i> Login</a>
-                                </li>
-                                <li>
-                                    <a href="{{url('/')}}" class="main-search"><i class="fa fa-search"></i></a>
-                                </li>
-                                <li>
-                                    <a href="{{url('/')}}" class="trigger-overlay"><i class="fa fa-bars"></i></a>
-                                </li>
-                            </ul>
-                        </div><!-- /.left-content -->
-                    </div><!-- /.col-md-8 -->
-    			</div><!-- /.row -->
-    		</div><!-- /.container -->
-    	</div><!-- /.head-top-area -->
-    </header>
+@php
+$dashboardRoute='';
+$bookingRoute = '';
+				if(isset(Auth::user()->roles)){
+					$role = Auth::user()->roles->pluck('name')->first();
+        // return $role;
+        if ($role == 'admin') {
+            // $role = 'admin';
+            $route = route('admin.dashboard');
+        } else if($role === 'service-provider'){
+            $dashboardRoute = route('service-provider.dashboard');
+						$bookingRoute = route('service-provider.bookings');
+        }
+        else if($role === 'user'){
+            $dashboardRoute = route('dashboard');
+						$bookingRoute = route('user.bookings');
+        }
+				}
+@endphp
+<!-- Header -->
+		<header class="header header-three">
+			<nav class="navbar navbar-expand-lg header-nav">
+				<div class="navbar-header">
+					<a id="mobile_btn" href="javascript:void(0);">
+						<span class="bar-icon">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
+					</a>
+					<a href="index.html" class="navbar-brand logo-small">
+						<img src="resources/frontend/assets/img/logo-icon-2.png" class="img-fluid" alt="Logo">
+					</a>
+				</div>
+				<div class="main-menu-wrapper">
+					<div class="menu-header">
+		
+						<a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
+					</div>
+					<ul class="main-nav">
+					<li>
+								<a href="{{url('/')}}" target="">Home</a>
+							</li>
+							<li>
+								<a href="{{route('categories')}}">Categories</a>
+							</li>
+							<li>
+								<a href="{{route('services')}}">Services</a>
+							</li>
+							<li>
+								<a href="{{route('contact-us')}}">Contacts</a>
+							</li>
+							<li>
+								<a href="{{route('categories')}}">Feedback</a>
+							</li>
+							@if( !Auth::user())
+							<li>
+								<a href="{{route('register')}}">Register</a>
+							</li>
+							<li>
+								<a href="{{route('login')}}">Login</a>
+							</li>
+							@endif
 
-    <!-- ====== Header Bottom Content ====== -->
-	<header class="header-bottom-content style-two hidden-xs hidden-sm">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-3">
-					<div class="site-logo">
-                        <a href="index-2.html">
-                            <!-- <img src="{{asset('resources/frontend/assets/images/footer-logo.png')}}" alt="house" /> -->
-                        </a>
-                    </div><!-- /.house-logo -->
-				</div><!-- /.col-md-4 -->
+				
+						</ul>
+				
+				</div>	
 
-				<div class="col-md-9 col-sm-9">
-                    <nav id="main-nav" class="site-navigation top-navigation">
-                        <div class="menu-wrapper">
-                            <div class="menu-content">
-                                <ul class="menu-list">
-                                    <li>
-                                        <a href="{{url('/')}}">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/')}}">House</a>
-                                        <ul class="sub-menu">
-                                            <li>
-                                                <a href="apartment.html">All Apartment</a>
-                                            </li>                                            
-                                            <li>
-                                                <a href="apartment-single.html">Apartment Single</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                          
-                                    <li>
-                                        <a href="{{url('about-us')}}">About</a>
-                                    </li>
 
-                                    <li>
-                                        <a href="{{url('contact-us')}}">Contact</a>
-                                    </li>
-                                </ul> <!-- /.menu-list -->
-                            </div> <!-- /.menu-content-->
-                        </div> <!-- /.menu-wrapper --> 
-                    </nav><!-- /.site-navigation --> 
-				</div><!-- /.col-md-8 -->
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</header><!-- /.header-bottom-area -->
+				@if(Auth::user())
+				<ul class="nav header-navbar-rht">
 
-    <!-- ====== Header Overlay Content ====== -->
-    <div class="header-overlay-content">
-        <!-- overlay-menu-item -->
-        <div class="overlay overlay-hugeinc gradient-transparent overlay-menu-item">
-            <button type="button" class="overlay-close">Close</button>
-            <nav>
-                <ul class="overlay-menu">
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="{{url('/')}}">About</a>
-                        <ul class="sub-menu">
-                            <li><a href="{{url('/')}}">Home</a></li>
-                            <li><a href="{{url('/')}}">About</a></li>
-                            <li><a href="{{url('/')}}">Work</a></li>
-                            <li><a href="{{url('/')}}">Clients</a>
-                                <ul class="sub-menu">
-                                    <li><a href="{{url('/')}}">Home</a></li>
-                                    <li><a href="{{url('/')}}">About</a></li>
-                                    <li><a href="{{url('/')}}">Work</a></li>
-                                    <li><a href="{{url('/')}}">Clients</a></li>
-                                    <li><a href="{{url('/')}}">Contact</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="{{url('/')}}">Contact</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{{url('/')}}">Work</a></li>
-                    <li><a href="{{url('/')}}">Clients</a></li>
-                    <li><a href="{{url('/')}}">Contact</a></li>
-                </ul>
-            </nav>
-        </div> <!-- /.overlay-menu-item -->
+					<!-- Notifications -->
+					<li class="nav-item dropdown logged-item">
+						<a href="#" class="dropdown-toggle nav-link color-nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+							<i class="fas fa-bell"></i> <span class="badge badge-pill bg-yellow">1</span>
+						</a>
+						<div class="dropdown-menu notify-blk dropdown-menu-end notifications">
+							<div class="topnav-dropdown-header">
+								<span class="notification-title">Notifications</span>
+								<a href="javascript:void(0)" class="clear-noti">Clear All  </a>
+							</div>
+							<div class="noti-content">
+								<ul class="notification-list">
+									<li class="notification-message">
+										<a href="notifications.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
+													<img class="avatar-img rounded-circle" alt="User Image" src="{{asset('resources/frontend/assets/img/customer/user-01.jpg')}}">
+												</span>
+												<div class="media-body flex-grow-1">
+													<p class="noti-details"> <span class="noti-title">Test User has booked your service</span></p>
+													<p class="noti-time"><span class="notification-time">Today 10:04 PM</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="notifications.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
+													<img class="avatar-img rounded-circle" alt="User Image" src="resources/frontend/assets/img/customer/user-02.jpg">
+												</span>
+												<div class="media-body flex-grow-1">
+													<p class="noti-details"> <span class="noti-title">Nancy Olson has booked your service</span></p>
+													<p class="noti-time"><span class="notification-time">Today 9:45 PM</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="notifications.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
+													<img class="avatar-img rounded-circle" alt="User Image" src="resources/frontend/assets/img/customer/user-03.jpg">
+												</span>
+												<div class="media-body flex-grow-1">
+													<p class="noti-details"> <span class="noti-title">Ramona Kingsley has booked your service</span></p>
+													<p class="noti-time"><span class="notification-time">Yesterday 8:17 AM</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="notifications.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
+													<img class="avatar-img rounded-circle" alt="User Image" src="resources/frontend/assets/img/customer/user-04.jpg">
+												</span>
+												<div class="media-body flex-grow-1">
+													<p class="noti-details"> <span class="noti-title">Ricardo Lung has booked your service</span></p>
+													<p class="noti-time"><span class="notification-time">Yesterday 6:20 AM</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li class="notification-message">
+										<a href="notifications.html">
+											<div class="media d-flex">
+												<span class="avatar avatar-sm flex-shrink-0">
+													<img class="avatar-img rounded-circle" alt="User Image" src="{{asset('resources/frontend/assets/img/customer/user-05.jpg')}}">
+												</span>
+												<div class="media-body flex-grow-1">
+													<p class="noti-details"> <span class="noti-title">Annette Silva has booked your service</span></p>
+													<p class="noti-time"><span class="notification-time">17 Sep 2020 10:04 PM</span></p>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<div class="topnav-dropdown-footer">
+								<a href="notifications.html">View all Notifications</a>
+							</div>
+						</div>
+					</li>
+					<!-- /Notifications -->
+					
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow logged-item">
+						<a href="#" class="dropdown-toggle nav-link color-nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+							<span class="user-img">
+								<img class="rounded-circle" src="{{asset('resources/frontend/assets/img/customer/user-01.jpg')}}" alt="">
+							</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-end">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img class="avatar-img rounded-circle" src="{{asset('resources/frontend/assets/img/customer/user-01.jpg')}}" alt="">
+								</div>
+								<div class="user-text">
+									<h6>Test User</h6>
+									<p class="text-muted mb-0">User</p>
+								</div>
+							</div>
+							<a class="dropdown-item" href="{{$dashboardRoute}}">Dashboard </a>
+							<a class="dropdown-item" href="favourites.html">Favourites</a>
+							<a class="dropdown-item" href="{{$bookingRoute}}">My Bookings</a>
+							<a class="dropdown-item" href="user-settings.html">Profile Settings</a>
+							<!-- <a class="dropdown-item" href="all-services.html">Book Services</a> -->
 
-        <!-- header-search-content -->
-        <div class="gradient-transparent overlay-search">
-            <button type="button" class="overlay-close">Close</button>
-            <div class="header-search-content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <form action="#" method="get" class="searchform">
-                                <div class="input-group" id="adv-search">
-                                    <input type="text" class="form-controller" placeholder="Search for snippets" />
-                                    <div class="input-group-btn">
-                                        <div class="btn-group" role="group">
-                                            <div class="dropdown dropdown-lg">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                                    <span class="fa fa-caret-down"></span>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                                    <div class="form-horizontal">
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox"> From Blog</label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label><input type="checkbox">Find Your Apartment</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">
-                                                <span class="fa fa-search" aria-hidden="true"></span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /.header-search-content -->  
+							<form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="dropdown-item" href="{{route('logout')}}"   onclick="event.preventDefault();
+                                this.closest('form').submit();" > <span>Log Out</span></a>
+                </form>
 
-        <!-- Registrar Or Sign In-content -->
-        <div class="cd-user-modal">
-            <div class="cd-user-modal-container">
-                <ul class="cd-switcher">
-                    <li><a href="#0">Sign in</a></li>
-                    <li><a href="#0">New account</a></li>
-                </ul>
+							
+						</div>
+					</li>
+					<!-- /User Menu -->
 
-                <!-- log in form -->
-                <div id="cd-login"> 
-                    <form class="cd-form">
-                        <p class="fieldset">
-                            <label class="image-replace cd-email" for="signin-email">E-mail</label>
-                            <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
-                            <span class="cd-error-message">Error message here!</span>
-                        </p>
+				</ul>
+				@endif
 
-                        <p class="fieldset">
-                            <label class="image-replace cd-password" for="signin-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
-                            <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
-                        </p>
-
-                        <p class="fieldset">
-                            <input type="checkbox" id="remember-me" checked>
-                            <label for="remember-me">Remember me</label>
-                        </p>
-
-                        <p class="fieldset">
-                            <input class="full-width" type="submit" value="Login">
-                        </p>
-                    </form>
-                    
-                    <p class="cd-form-bottom-message">
-                        <a href="#0">Forgot your password?</a>
-                    </p>
-                    <a href="#0" class="cd-close-form">Close</a>
-                </div> <!-- cd-login -->
-
-                <!-- sign up form -->
-                <div id="cd-signup">
-                    <form class="cd-form">
-                        <p class="fieldset">
-                            <label class="image-replace cd-username" for="signup-username">Username</label>
-                            <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-                            <span class="cd-error-message">Error message here!</span>
-                        </p>
-
-                        <p class="fieldset">
-                            <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                            <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-                            <span class="cd-error-message">Error message here!</span>
-                        </p>
-
-                        <p class="fieldset">
-                            <label class="image-replace cd-password" for="signup-password">Password</label>
-                            <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-                            <a href="#0" class="hide-password">Hide</a>
-                            <span class="cd-error-message">Error message here!</span>
-                        </p>
-
-                        <p class="fieldset">
-                            <input type="checkbox" id="accept-terms">
-                            <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-                        </p>
-
-                        <p class="fieldset">
-                            <input class="full-width has-padding" type="submit" value="Create account">
-                        </p>
-                    </form>
-
-                    <a href="#0" class="cd-close-form">Close</a>
-                </div> <!-- cd-signup -->
-                
-                <!-- reset password form -->
-                <div id="cd-reset-password">
-                    <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-
-                    <form class="cd-form">
-                        <p class="fieldset">
-                            <label class="image-replace cd-email" for="reset-email">E-mail</label>
-                            <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
-                            <span class="cd-error-message">Error message here!</span>
-                        </p>
-                        <p class="fieldset">
-                            <input class="full-width has-padding" type="submit" value="Reset password">
-                        </p>
-                    </form>
-
-                    <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
-                </div> <!-- cd-reset-password -->
-                <a href="#0" class="cd-close-form">Close</a>
-            </div> <!-- cd-user-modal-container -->
-        </div> <!-- cd-user-modal -->
-    </div><!-- /.header-overlay-content -->
+			</nav>
+		</header>
+		<!-- /Header -->
+		
