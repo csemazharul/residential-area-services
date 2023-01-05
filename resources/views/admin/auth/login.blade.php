@@ -1,56 +1,91 @@
-<x-admin-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{$page_title}}</title>
+    <link rel="stylesheet" href="{{ asset('resources/admin/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/admin/css/bootadmin.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/admin/css/fontawesome-all.min.css') }}">
+    <script src="{{ asset('resources/admin/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('resources/admin/js/bootstrap-notify.min.js') }}"></script>
+    <link rel="icon" type="image/png" href="{{asset('resources/images/logo/favicon.png')}}" />
+</head>
+<body class="bg-secondary">
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-md-4">
+            @if(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ session()->get('error') }}
+                </div>
+            @elseif(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ session()->get('success') }}
+                </div>
+            @elseif(session()->has('alert'))
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ session()->get('alert') }}
+                </div>
+            @endif
+            <div class="card br-10 bg-dark">
+                <div class="card-header">
+                    <h3 class="text-center text-white">Admin Sign In</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{ route('admin.login') }}">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="email" value="{{old('email')}}"  class="form-control form-control-lg" name="email"
+                                   placeholder="email">
+                            @if ($errors->has('email'))
+                                <span class="text-danger" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
+                        </div>
 
-        <form method="POST" action="{{ route('admin.login') }}">
-            @csrf
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control form-control-lg" name="password"
+                                   placeholder="Password">
+                            @if ($errors->has('password'))
+                                <span class="text-danger" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                            @endif
+                        </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
+        </div>
+    </div>
+</div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('admin.password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('admin.password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-admin-guest-layout>
+<script src="{{ asset('resources/admin/js/bootadmin.min.js') }}"></script>
+<script src="{{ asset('resources/admin/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

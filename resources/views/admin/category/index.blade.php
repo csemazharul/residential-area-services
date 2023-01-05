@@ -28,7 +28,7 @@
                 <tr>
                     <td data-label="SL">{{++$k}}</td>
                     <td data-label="Categroy"><strong>{{$data->name}}</strong></td>
-                    <td data-label="Image"><strong>{{$data->image}}</strong></td>
+                    <td data-label="Image"><img width="80px" height="50px" src={{asset('/uploads/'.$data->image)}} /></td>
 
                     <td data-label="Status">
                         <span class="badge  badge-pill  badge-{{ $data->status ===0 ? 'danger' : 'success' }}">{{ $data->status == 0 ? 'Deactive' : 'Active' }}</span>

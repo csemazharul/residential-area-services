@@ -1,4 +1,6 @@
+
 @extends('admin.layout.master')
+
 @section('import-css')
     <link rel="stylesheet" href="{{asset('assets/admin/css/bootstrap-select.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/admin/css/jquery.simple-dtpicker.css')}}">
@@ -20,66 +22,55 @@
 @section('body')
 
     <h2 class="mb-4">{{$page_title}}</h2>
+    @if (session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+    <!-- @if (session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+    @endif -->
 
     <div class="card mb-4">
         <div class="card-header bg-white font-weight-bold">
-            <a href="{{route('counter.index')}}" class="btn btn-success btn-md float-right">
-                <i class="fa-fw fas fa-map"></i> All Counter
+            <a href="{{url('admin/categories')}}" class="btn btn-success btn-md float-right">
+                <i class="fa-fw fas fa-map"></i> All Category
             </a>
         </div>
-
-        <form role="form" method="POST" action="{{route('counter.update',$editData->id)}}" name="editForm"
+        
+        <form role="form" method="POST" action="{{ route('admin.categories.update', ['category'=>$category->id]) }}" name="editForm"
               enctype="multipart/form-data">
             {{ csrf_field() }}
-            {{method_field('put')}}
+            {{ method_field('PUT') }}
+
 
             <div class="card-body">
                 <div class="form-row">
                     <div class="offset-md-1 col-md-9 mb-3">
-                        @include('errors.error')
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="offset-md-1 col-md-9 mb-3">
-                        <label><strong>Counter Name <span class="error">*</span></strong></label>
-                        <input type="text" name="counter_name" class="form-control form-control-lg" type="text"
-                               placeholder="Counter Name" id="counter_name" value="{{$editData->counter_name}}">
+                        <label><strong>Category Name <span class="error">*</span></strong></label>
+                        <input type="text" value="{{$category->name}}" name="name" class="form-control form-control-lg" 
+                               placeholder="Category Name" id="counter_name" value="">
                     </div>
-
                 </div>
 
+             
                 <div class="form-row">
                     <div class="offset-md-1 col-md-9 mb-3">
-                      <select name="location_id" class="form-control @if ($errors->has('location_id')) is-invalid @endif" style="width: 100%" data-live-search="true">
-                          <option value="">Select Location</option>
-                          @foreach ($locations as $key => $value)
-                            <option value="{{$key}}" @if($key==$editData->location_id){{'selected'}}@endif>{{$value}}</option>
-                          @endforeach
-                      </select>
-
+                        <label><strong>Image <span class="error">*</span></strong></label>
+                        <input type="file" name="image" class="form-control form-control-lg">
                     </div>
-
                 </div>
-
-                <div class="form-row">
-                    <div class="offset-md-1 col-md-9 mb-3">
-                        <label><strong>Address<span class="error">*</span></strong></label>
-
-                        <textarea name="address" class="form-control form-control-lg"
-                               placeholder="Counter Address" id="address">{{$editData->address}}</textarea>
-
-                    </div>
-
-                </div>
-
 
 
                 <div class="form-row">
                     <div class="offset-md-1 col-md-9 mb-3">
                         <label><strong>Status</strong></label>
                         <input type="checkbox" name="status" data-toggle="toggle" data-on="Active" data-off="DeActive"
-                              @if($editData->status == 1) checked @endif data-onstyle="success" data-offstyle="danger" data-width="100%">
+                               checked
+                               data-onstyle="success" data-offstyle="danger" data-width="100%">
                     </div>
                 </div>
 

@@ -12,22 +12,6 @@
     <div class="col-md">
         <a href="" class="textDecoration">
             <div class="d-flex border">
-                <!-- <div class="bg-success text-light p-4">
-                    <div class="d-flex align-items-center h-100">
-                        <i class="fa-fw fas fa-bus fa-3x"></i>
-                    </div>
-                </div> -->
-                <div class="flex-grow-1 bg-white p-4">
-                    <p class="text-uppercase text-secondary mb-0">Total Society Manager 10</p>
-                </div>
-            </div>
-        </a>
-    </div>
-
-
-    <div class="col-md">
-        <a href="" class="textDecoration">
-            <div class="d-flex border">
                 <!-- <div class="bg-danger text-light p-4">
                     <div class="d-flex align-items-center h-100">
                         <i class="fa fa-3x fa-fw fa-road"></i>
@@ -39,8 +23,6 @@
             </div>
         </a>
     </div>
-
-
     <div class="col-md">
         <a href="" class="textDecoration">
             <div class="d-flex border">
