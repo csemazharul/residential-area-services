@@ -2,7 +2,25 @@
 @extends('./Frontend/layout/master')
 
 @section('title', 'Resendial services')
-
+@push('css')
+	<style>
+		.s-w-17{
+			width: 20%;
+			display: flex;
+			display: table-cell;
+			vertical-align: middle;
+			position: relative;
+			padding: 0 10px;
+		}
+		.s-btn{
+			border: 1px solid #DA1C2E;
+			background: #DA1C2E;
+			border-radius: 4px;
+			font-size: 16px;
+			min-width: 211px;
+		}
+	</style>
+@endpush
 @section('content')
 
 		<!-- Hero Section -->
@@ -10,32 +28,50 @@
 			<div class="layer">
 				<div class="container-fluid">
 					<div class="row ">
-						<div class="col-lg-8">
+						<div class="col-lg-10">
 							<div class="section-search-box d-flex align-items-center aos" data-aos="fade-up">
 								<div class="section-search">
 									<!-- <h3><span>World's Largest</span> <br> Marketplace</h3> -->
 									<div class="search-box">
-										<form action="https://html.truelysell.com/template/search.html"> 
-											<div class="search-input line">
-												<i class="fa fa-th-large bficon"></i>
+										<form action="{{route('services.search')}}" method="GET"> 
+											<div class="s-w-17">
 												<div class="form-group mb-0">
-													<input type="text" class="form-control" placeholder="What are you looking for?">
+													
+													<select class="form-control" name="division_id" id="division_id">
+														<option selected disabled>SELECT DIVISION</option>
+														@foreach($divisions as $division)
+															<option value="{{$division->id}}">{{$division->bn_name}}</option>
+														@endforeach
+													</select>
 												</div>
 											</div>
-											<div class="search-input location-light">
-												<i class="fa-light fa-location-dot"></i>
+											<div class="s-w-17">
 												<div class="form-group mb-0">
-													<input type="text" class="form-control" placeholder="Your Location"> 
+												<select class="form-control" name="district_id" id="district_id">
+														<option selected disabled>SELECT DISTRICT</option>
+													</select>
 												</div>
 											</div>
-											<div class="search-btn">
+											<div class="s-w-17">
+												<div class="form-group mb-0">
+												<select class="form-control" name="upazila_id" id="upazila_id">
+														<option selected disabled>SELECT UPAZILA</option>
+													</select>
+												</div>
+											</div>
+											<div class="s-w-17">
+												<div class="form-group mb-0">
+												<select class="form-control" name="union_id" id="union_id">
+														<option selected disabled>SELECT UNION</option>
+													</select>
+												</div>
+											</div>
+											<div class="s-btn s-w-17">
 												<button class="btn search_service" ><i class="fa fa-search"></i>Search</button>
 											</div>
 										</form>
 									</div>
-									<div class="popular-product-list">
-										<p><span>Most Popular :</span> <a href="search.html">Electrical Works</a>,<a href="search.html">Cleaning</a>,<a href="search.html">AC Repair</a>,<a href="search.html">Computer</a></p>
-									</div>
+							
 								</div>
 							</div>
 						</div>
@@ -51,104 +87,36 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="top-section-head aos" data-aos="fade-up">
-							<h2>Featured Categories</h2>
+							<h2>Service Categories</h2>
 						</div>
 						<div class="section-heading section-heading-three text-center aos" data-aos="fade-up">
 							<span>What do you need to find?</span>
 							<div class="section-three">
-								<h2>Featured Categories</h2>
+								<h2>Service Categories</h2>
 							</div>
 						</div>
 						<div class="catsec aos" data-aos="fade-up">
 							<div class="row">
+							@foreach ($categories as $category) 
 								<div class="col-lg-4 col-md-6">
-									<a href="search.html">
+									<a href="{{route('category.services',['category'=>$category->id])}}">
 										<div class="cate-widget">
-											<img src="resources/frontend/assets/img/category/category-10.jpg" alt="">
+										<img src="{{ asset('uploads/'.$category->image) }}" width="376px" height="250px"/>
 											<div class="cate-title">
-												<h3><span> Computer</span></h3>
+												<h3><span>  {{$category->name}}</span></h3>
 											</div>
 											<div class="cate-count">
 												<i class="fas fa-users"></i> 
-												<span>21</span>
+												<span>{{count($category->services)}}</span>
 											</div>
 										</div>
 									</a>
 								</div>
-								<div class="col-lg-4 col-md-6">
-									<a href="search.html">
-										<div class="cate-widget">
-											<img src="resources/frontend/assets/img/category/category-11.jpg" alt="">
-											<div class="cate-title">
-												<h3><span> Interior</span></h3>
-											</div>
-											<div class="cate-count">
-												<i class="fas fa-users"></i> 
-												<span>15</span>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-4 col-md-6">
-									<a href="search.html">
-										<div class="cate-widget">
-											<img src="resources/frontend/assets/img/category/category-12.jpg" alt="">
-											<div class="cate-title">
-												<h3><span> Car Wash</span></h3>
-											</div>
-											<div class="cate-count">
-												<i class="fas fa-users"></i> 
-												<span>21</span>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-4 col-md-6">
-									<a href="search.html">
-										<div class="cate-widget">
-											<img src="resources/frontend/assets/img/category/category-13.jpg" alt="">
-											<div class="cate-title">
-												<h3><span> Cleaning</span></h3>
-											</div>
-											<div class="cate-count">
-												<i class="fas fa-users"></i> 
-												<span>14</span>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-4 col-md-6">
-									<a href="search.html">
-										<div class="cate-widget">
-											<img src="resources/frontend/assets/img/category/category-14.jpg" alt="">
-											<div class="cate-title">
-												<h3><span> Electrical</span></h3>
-											</div>
-											<div class="cate-count">
-												<i class="fas fa-users"></i> 
-												<span>10</span>
-											</div>
-										</div>
-									</a>
-								</div>
-								<div class="col-lg-4 col-md-6">
-									<a href="search.html">
-										<div class="cate-widget">
-											<img src="resources/frontend/assets/img/category/category-15.jpg" alt="">
-											<div class="cate-title">
-												<h3><span> Construction</span></h3>
-											</div>
-											<div class="cate-count">
-												<i class="fas fa-users"></i> 
-												<span>11</span>
-											</div>
-										</div>
-									</a>
-								</div>
+							@endforeach
 							</div>
 						</div>
 						<div class="sell-view-btn text-center aos" data-aos="fade-up">
-							<a href="search.html" class="btn btn-view ">View All <i class="fas fa-long-arrow-alt-right"></i></a>
+							<a href="{{route('services')}}" class="btn btn-view ">View All <i class="fas fa-long-arrow-alt-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -625,7 +593,7 @@
 							</div>
 						</div>
 						<div class="sell-view-btn text-center aos" data-aos="fade-up">
-							<a href="search.html" class="btn btn-view">View All <i class="fas fa-long-arrow-alt-right"></i></a>
+							<a href="{{route('services')}}" class="btn btn-view">View All <i class="fas fa-long-arrow-alt-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -695,41 +663,80 @@
 			</div>
 		</section>
 		<!-- /How It Works -->
+		<div id="notification"></div>
+		</div>
 
-		<!-- /our app -->
-		<section class="app-set app-download">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-7 col-12 d-flex justify-content-center">
-						<div class="app-box">
-							<div class="col-md-12">
-								<div class="heading aos" data-aos="fade-up">
-									<h2>Download Our App</h2>
-									<span>Aliquam lorem ante, dapibus in, viverra quis</span>
-								</div>
-							</div>
-							<div class="downlaod-set aos" data-aos="fade-up">
-								<ul>
-									<li>
-										<a href="#"><img src="resources/frontend/assets/img/app-gp-02.png" alt="img"></a>
-									</li>
-									<li>
-										<a href="#"><img src="resources/frontend/assets/img/app-ap-02.png" alt="img"></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-5 col-12">
-						<div class="appimg-set text-center aos" data-aos="fade-up">
-							<img src="resources/frontend/assets/img/down-app-02.png" alt="img">
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- /our app -->
 @endsection
+
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//{{ Request::getHost() }}:{{env('LARAVEL_ECHO_PORT')}}/socket.io/socket.io.js"></script>
+<script src="{{ url('/js/laravel-echo-setup.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+var i = 0;
+window.Echo.channel('order-notification')
+.listen('.orderNotification', (data) => {
+	alert(1);
+	console.log("data", data)
+i++;
+$("#notification").append('<div class="alert alert-success">'+i+'.'+data.title+'</div>');
+});
+</script>
+<script type="text/javascript">
+
+actionElementById('division_id', 'District', '{{url('get-district')}}', 'district_id');
+actionElementById('district_id', 'Upazila', '{{url('get-upazila')}}', 'upazila_id');
+actionElementById('upazila_id', 'Union ', '{{url('get-union')}}', 'union_id');
+
+function actionElementById(elementId, title, url, actionElementId) {
+  const eventName = document.getElementById(elementId);
+  const actionEvent = document.getElementById(actionElementId)
+  eventName.addEventListener('change', function(e) {
+    const param = e.target.value;
+    if (actionEvent) {
+      const route = url + '/' + param;
+      eventReset(elementId)
+      const data = fetchData(route);
+      console.log(data)
+      data.then(items => {
+        let options = `<option value="">Select ${title}</option>`;
+        items.forEach(item => {
+          options += `<option value="${item.id}">${item.bn_name}</option>`;
+        });
+        actionEvent.innerHTML = options;
+      });
+    } else {
+      element.innerHTML = '';
+    }
+  });
+}
+
+function fetchData(url, data = {}) {
+  return fetch(`${url}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    })
+    .then(res => res.json())
+    .catch(err => {
+      return err
+    })
+}
+
+function eventReset(id) {
+  if (id === 'district_id') {
+    document.getElementById('union_id').innerHTML = `<option value="">Select Union</option>`;
+  }
+  if (id === 'division_id') {
+    document.getElementById('upazila_id').innerHTML = `<option value="">Select Upazila</option>`;
+    document.getElementById('union_id').innerHTML = `<option value="">Select Union</option>`;
+  }
+}
+
+</script>
+@stop
    
 
 
