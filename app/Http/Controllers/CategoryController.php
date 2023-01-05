@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Throwable;
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $page_title = 'Category List';
+        $page_title = 'Service Category';
         return view('admin.category.index', compact('categories', 'page_title'));
     }
 
@@ -44,7 +45,7 @@ class CategoryController extends Controller
             $requestData = $request->all();
             if (!empty($request->image)) {
                 $imageName = time().'.'.$request->image->extension();
-                $request->image->storeAs('uploads', $imageName);
+                $request->image->move(public_path('/uploads'), $imageName);
                 $requestData['image'] = $imageName;
             }
             $requestData['status'] = $request->status === 'on' ? 1 : 0;
@@ -94,10 +95,10 @@ class CategoryController extends Controller
             $requestData = $request->only('name', 'status');
             if (!empty($request->image)) {
                 $imageName = time().'.'.$request->image->extension();
-                $request->image->storeAs('uploads', $imageName);
+                $request->image->move(public_path('/uploads'), $imageName);            
                 $requestData['image'] = $imageName;
             }
-            $path = storage_path().'/uploads/'.$category->image;
+            $path = public_path('uploads/'.$category->image);
                 if(File::exists($path)){
                     unlink($path);
                 }
@@ -118,5 +119,10 @@ class CategoryController extends Controller
     public function destroy(category $category)
     {
         //
+    }
+
+    public function geUsers(){
+        // $users = User::all();
+        // return view('admin.users', compact('users'));
     }
 }
