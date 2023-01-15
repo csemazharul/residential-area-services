@@ -96,17 +96,17 @@ class ReviewController extends Controller
     }
 
     public function userReviews(){
-        $reviews = Review::with('serviceDetails')->where('user_id',auth()->user()->id)->get();
+        $reviews = Review::with('serviceDetails')->where('user_id',auth()->user()->id)->paginate(5);
         return view('user.reviews',compact('reviews'));
     }
 
     public function serviceProviderReviews(){
-        $reviews = Review::with('provider', 'serviceDetails')->where('provider_id',auth()->user()->id)->get();
+        $reviews = Review::with('provider', 'serviceDetails')->where('provider_id',auth()->user()->id)->paginate(5);
         return view('service-provider.reviews',compact('reviews'));
     }
 
     public function allReviews(){
-        $reviews = Review::with('provider', 'serviceDetails', 'user')->get();
+        $reviews = Review::with('provider', 'serviceDetails', 'user')->paginate(5);
         return view('admin.reviews',compact('reviews'));
     }
 }
