@@ -29,19 +29,19 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
+        // dd($check);
+
 
         $request->session()->regenerate();
         $roles = $request->user()->getRoleNames();
         if (!empty($roles)) {
             switch ($roles[0]) {
-                case 'society-manager':
-                    return redirect(route('society-manager.dashboard'));
-                    break;
                 case 'service-provider':
                     return redirect(route('service-provider.dashboard'));
                     break;
                 case 'user':
-                    return redirect()->intended(RouteServiceProvider::HOME);
+                    // return redirect()->intended(RouteServiceProvider::HOME);
+                    return redirect(route('user.dashboard'));
                     break;
             }
         }
