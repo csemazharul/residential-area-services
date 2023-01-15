@@ -9,7 +9,10 @@ use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\RegisteredUserController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -74,6 +77,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         ->middleware('auth:admin')
         ->name('logout');
     Route::resource('categories', CategoryController::class)->middleware('auth:admin');
-
-
+    Route::get('/user/list', [UserController::class, 'getUsers'])->middleware('auth:admin');
+    Route::get('/provider/list', [UserController::class, 'getServiceProviders'])->middleware('auth:admin');
+    Route::get('/user/block/{id}/{status}', [UserController::class, 'blockUser'])->middleware('auth:admin');
+    Route::get('/user/delete/{id}', [UserController::class, 'deletedUser'])->middleware('auth:admin');
+    Route::get('/all/reviews', [ReviewController::class, 'allReviews'])->middleware('auth:admin');
+    Route::get('/all/contacts', [ContactController::class,'index'])->middleware('auth:admin');
 });
