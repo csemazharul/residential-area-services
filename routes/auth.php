@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -8,6 +9,9 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\PackagesController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ServiceProvider\ServicesController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\SocietyManagerController;
@@ -73,26 +77,29 @@ Route::middleware('auth')->group(function () {
 //         return 1;
 //     });
 // });
-Route::middleware(['auth', 'role:society-manager'])->prefix('society-manager')->group(function () {
-    Route::get('/dashboard', [SocietyManagerController::class, 'index'])->name('socitety-manager.dashboard');
-});
+
 Route::middleware(['auth', 'role:service-provider'])->prefix('service-provider')->group(function () {
     Route::get('/dashboard', [ServiceProviderController::class, 'index'])->name('service-provider.dashboard');
     Route::resource('/services', ServicesController::class);
+    Route::resource('/packages', PackagesController::class);
+    Route::get('/bookings', [BookingsController::class, 'providerBookingList'])->name('service-provider.bookings');
+    Route::get('reviews', [ReviewController::class, 'serviceProviderReviews'])->name('service-provider.reviews');
+    Route::get('profile', [ServiceProviderController::class, 'profile'])->name('service-provider.profile');
+    Route::post('profile-update', [ServiceProviderController::class, 'profileUpdate'])->name('service-provider.profile-update');
 });
 Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     // Route::get('/dashboard', [ServiceProviderController::class, 'index'])->name('service-provider.dashboard');
     // Route::resource('/services', ServicesController::class);
-    Route::get('/bookings', function () {
-        return View('user.bookings');
-    });
-    Route::get('reviews', function () {
-        return View('user.reviews');
-    });
-    Route::get('profile', function () {
-        return View('user.profile');
-    });
+    Route::get('/bookings', [BookingsController::class, 'userBookingList'])->name('user.bookings');
+    Route::get('/reviews', [ReviewController::class, 'userReviews'])->name('user.reviews');
+    Route::get('user/profile', [UserController::class, 'userProfile'])->name('user.profile');
+    Route::post('user/profile/update', [UserController::class, 'profileUpdate'])->name('user.profile.update');
     Route::get('favourites', function () {
         return View('user.favourites');
     });
+    Route::get('/favorites', [ServicesController::class, 'getUserFavoriteServices'])->name('user.favorites');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('user.dashboard');
+
+    Route::get('service/booking/{service_id}', [BookingsController::class,'bookingForm'])->name('service.book');
 });
+Route::get('/notifications/seen/{id}', [UserController::class, 'notifications'])->name('notifications.seen');
