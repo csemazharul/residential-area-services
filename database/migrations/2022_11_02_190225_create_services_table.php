@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->string('image')->nullable();
-            $table->float('price')->nullable();
+            $table->foreignId('service_provider_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('division_id')->constrained('divisions')->onDelete('cascade');
+            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
+            $table->foreignId('upazila_id')->constrained('upazilas')->onDelete('cascade');
+            $table->foreignId('union_id')->constrained('unions')->onDelete('cascade');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

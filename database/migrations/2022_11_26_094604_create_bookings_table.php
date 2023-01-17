@@ -20,9 +20,8 @@ return new class extends Migration
             $table->foreignId('service_id')->constrained('services')->onDelete('cascade');
             $table->foreignId('division_id')->constrained('divisions')->onDelete('cascade');
             $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
-            $table->float('amount')->nullable();
-            $table->string('contact')->nullable();
-            $table->mediumText('delivery_address')->nullable();
+            $table->foreignId('package_id')->constrained('packages')->onDelete('cascade');
+            $table->string('track_number')->nullable();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

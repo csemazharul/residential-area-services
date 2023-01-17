@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('providers', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('division_id')->constrained('divisions')->onDelete('cascade');
-            $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
-            $table->mediumText('address_details')->nullable();
+            $table->foreignId('provider_id')->constrained('users')->onDelete('cascade');
+            $table->string('title');
+            $table->string('body');
+            $table->boolean('seen')->default(0);
             $table->timestamps();
         });
-
-
     }
 
     /**
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('providers');
+        Schema::dropIfExists('notifications');
     }
 };
