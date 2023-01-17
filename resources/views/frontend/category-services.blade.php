@@ -80,7 +80,7 @@
 									<div class="service-widget">
 										<div class="service-img">
 											<a href="{{url('/services/'.$service->id)}}">
-												<img class="img-fluid serv-img" alt="Service Image" style="width:298px;height:182px" src="{{asset('storage/uploads/'.$image) }}">
+												<img class="img-fluid serv-img" alt="Service Image" style="width:298px;height:182px" src="{{asset('uploads/'.$image) }}">
 											</a>
 											<div class="fav-btn">
 												<a href="javascript:void(0)" class="fav-icon">
@@ -114,7 +114,7 @@
 														<span>xxxxxxxx49</span>
 													</span>
 													<span class="col ser-location">
-														<span>{{$service->district->bn_name}}, {{$service->upazila->bn_name}}</span> <i class="fas fa-map-marker-alt ms-1"></i>
+														<span>{{$service->district->name}}, {{$service->upazila->name}}</span> <i class="fas fa-map-marker-alt ms-1"></i>
 													</span>
 												</div>
 											</div>

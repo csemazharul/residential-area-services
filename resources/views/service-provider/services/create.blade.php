@@ -28,6 +28,9 @@
     .check-flx{
       display: flex;
     }
+    .asterisk{
+      color: red;
+    }
   </style>
 @endpush
 @section('content')
@@ -54,12 +57,12 @@
                 {{ csrf_field() }}
                 <div class="row">
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">Service Name</label>
-                    <input class="form-control" type="text" value="" name="name">
+                    <label class="me-sm-2">Service Name <span class="asterisk">*</span></label>
+                    <input class="form-control" type="text" value="" name="name" required>
                   </div>
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">Service Category</label>
-                    <select class="form-control form-select" name="category_id" id="category_id">
+                    <label class="me-sm-2">Service Category <span class="asterisk">*</span></label>
+                    <select class="form-control form-select" name="category_id" id="category_id" required>
                       <option value="">Service Category</option>
                       @foreach($categories as $category)
                       <option value="{{$category->id}}">{{$category->name}}</option>
@@ -71,30 +74,30 @@
                     <h5 class="form-title">Service Locations</h5>
                   </div>
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">Divisions</label>
-                    <select class="form-control form-select" name="division_id" id="division_id">
+                    <label class="me-sm-2">Divisions <span class="asterisk">*</span></label>
+                    <select class="form-control form-select" name="division_id" id="division_id" required>
                       <option value=""> Divison</option>
                       @foreach($divisions as $division)
-                      <option value="{{$division->id}}">{{$division->bn_name}}</option>
+                      <option value="{{$division->id}}">{{$division->name}}</option>
                       @endforeach
                     </select>
                   </div>
 
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">District</label>
-                    <select class="form-control form-select" name="district_id" id="district_id">
+                    <label class="me-sm-2">District <span class="asterisk">*</span></label>
+                    <select class="form-control form-select" name="district_id" id="district_id" required>
                       <option value="">District</option>
                     </select>
                   </div>
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">Upazila</label>
-                    <select class="form-control form-select" name="upazila_id" id="upazila_id">
+                    <label class="me-sm-2">Upazila <span class="asterisk">*</span></label>
+                    <select class="form-control form-select" name="upazila_id" id="upazila_id" required>
                       <option value="">Upazila</option>
                     </select>
                   </div>
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">Union</label>
-                    <select class="form-control form-select" name="union_id" id="union_id">
+                    <label class="me-sm-2">Union <span class="asterisk">*</span></label>
+                    <select class="form-control form-select" name="union_id" id="union_id" required>
                       <option value="">Union</option>
                     </select>
                   </div>
@@ -102,11 +105,11 @@
                     <h5 class="form-title">Address</h5>
                   </div> -->
                   <div class="form-group col-xl-12">
-                    <label class="me-sm-2">Service Description</label>
-                    <textarea type="text" class="form-control" id="description" name="description" value=""></textarea>
+                    <label class="me-sm-2">Service Description <span class="asterisk">*</span></label>
+                    <textarea type="text" class="form-control" id="description" name="description" value="" ></textarea>
                   </div>
                   <div class="form-group col-xl-12">
-                    <label class="me-sm-2">Additional Information</label>
+                    <label class="me-sm-2">Additional Information </label>
                     <textarea type="text" class="form-control" id="short_description" name="short_description" value=""></textarea>
                   </div>
 
@@ -143,17 +146,17 @@
                                 </div>
 
                   <div class="form-group col-xl-6">
-                    <label class="me-sm-2">Service Charge type.</label>
+                    <label class="me-sm-2">Service Charge type </label>
                     <!-- <input type="text" class="form-control" name="price" value=""> -->
                     <!-- two checkbox create -->
                     <div class="form-check check-flx">
-                      <label class="checkbox" style="margin-right:13px"><input type="radio" id="package" name="price_type" value="package">Package</label><br>
-                      <label class="checkbox"><input type="radio" name="price_type" id="custom_price" value="custom">Fixed custom price</label>
+                      <label class="checkbox" style="margin-right:13px"><input type="radio" id="package" name="price_type" value="package">Package  </label><br>
+                      <label class="checkbox"><input type="radio" name="price_type" id="custom_price" value="custom">Fixed custom price </label>
                       </div>
                     </div>
 
                   <div class="form-group col-xl-6" id="price" style="display:none">
-                    <label class="me-sm-2">Price</label>
+                    <label class="me-sm-2">Price  </label>
                     <input type="text" class="form-control" name="price" value="">
                     </div>   
 

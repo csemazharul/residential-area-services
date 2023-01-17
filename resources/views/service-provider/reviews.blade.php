@@ -1,7 +1,7 @@
 
 @extends('./Frontend/layout/master')
 
-@section('title', 'Resendial services| Reviews')
+@section('title', 'Online Home services| Reviews')
 
 @section('content')
             <div class="content">
@@ -12,7 +12,7 @@
 
                         </div>
                         <div class="col-xl-9 col-md-8">
-                            <h4 class="widget-title">Reviews</h4>
+                            <h4 class="widget-title">Customer Review</h4>
                             <div class="card review-card mb-0">
                                 <div class="card-body">
                                     <!-- Review -->
@@ -29,7 +29,7 @@
                                         <div class="review-img">
                                             <img
                                                 class="rounded img-fluid"
-                                                src="{{asset('storage/uploads/'.$images[0]) }}"
+                                                src="{{asset('uploads/'.$images[0]) }}"
                                                 alt=""
                                             />
                                         </div>
@@ -42,11 +42,11 @@
                                             <div class="review-date">
                                                 {{$review->created_at->diffForHumans()}}
                                             </div>
-                                            <p class="mb-2">{{$review->title}}/p>
+                                            <p class="mb-2">{{$review->title}}</p>
                                             <div class="review-user">
                                                 <img
                                                     class="avatar-xs rounded-circle"
-                                                    src="assets/img/customer/user-01.jpg"
+                                                    src="{{asset('uploads/profile_picture/'.$review->user->picture)}}"
                                                     alt=""
                                                 />
                                                {{$review->user->name}}
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="review-count">
                                             <div class="rating">
-                                                @for($i=0;$i<=$review->rating;$i++)
+                                                @for($i=0;$i<$review->rating;$i++)
                                                 <i
                                                     class="fas fa-star filled"
                                                 ></i>
@@ -71,6 +71,28 @@
                                     <!-- /Review -->
                                 </div>
                             </div>
+
+                            <div class="pagination">
+                                @if ($reviews->lastPage() > 1)
+                                    <ul>
+                                        <li class="{{ ($reviews->currentPage() == 1) ? 'disabled' : '' }}">
+                                            <a href="{{ $reviews->url(1) }}">
+                                                <i class="fas fa-angle-left"></i></a>
+                                        </li>
+                                        @for ($i = 1; $i <= $reviews->lastPage(); $i++)
+                                            <li class="{{ ($reviews->currentPage() == $i) ? 'active' : '' }}">
+                                                <a href="{{ $reviews->url($i) }}">{{ $i }}</a>
+                                            </li>
+                                        @endfor
+                                        <li class="{{ ($reviews->currentPage() == $reviews->lastPage()) ? 'arrow' : '' }}">
+                                            <a href="{{ $reviews->url($reviews->currentPage()+1) }}">
+                                                <i class="fas fa-angle-right" ></i> </a>
+                                        </li>
+                                    </ul>
+                                @endif
+
+                                </div>
+
                         </div>
                     </div>
                 </div>

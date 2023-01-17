@@ -1,9 +1,9 @@
 <div class="mb-4">
 							<div class="d-sm-flex flex-row flex-wrap text-center text-sm-start align-items-center">
-								<img alt="profile image" src="{{asset('resources/frontend/assets/img/customer/user-01.jpg')}}" class="avatar-lg rounded-circle">
+								<img alt="profile image" src="{{asset('uploads/profile_picture/'.Auth::user()->picture)}}" class="avatar-lg rounded-circle">
 								<div class="ms-sm-3 ms-md-0 ms-lg-3 mt-2 mt-sm-0 mt-md-2 mt-lg-0">
-									<h6 class="mb-0">Test User</h6>
-									<p class="text-muted mb-0">Member Since Apr 2020</p>
+									<h6 class="mb-0">{{Auth::user()->name}} 11</h6>
+									<!-- <p class="text-muted mb-0">Member Since Apr 2020</p> -->
 								</div>
 							</div>
 						</div>
@@ -35,7 +35,7 @@
 									</a>
 								</li>
 								<li class="nav-item">
-									<a href="{{route('packages.create')}}" class="nav-link">
+									<a href="{{route('packages.index')}}" class="nav-link">
 										<i class="far fa-user"></i> <span>Packages</span>
 									</a>
 								</li>
@@ -49,9 +49,14 @@
 										<i class="far fa-star"></i> <span>Reviews</span>
 									</a>
 								</li>
-								<li class="nav-item">
+								<!-- <li class="nav-item">
 									<a href="user-payment.html" class="nav-link">
 										<i class="fas fa-hashtag"></i> <span>Payment</span>
+									</a>
+								</li> -->
+								<li class="nav-item">
+									<a href="user-payment.html" class="nav-link">
+										<i class="fas fa-hashtag"></i> <span>Notifications</span>
 									</a>
 								</li>
 							</ul>

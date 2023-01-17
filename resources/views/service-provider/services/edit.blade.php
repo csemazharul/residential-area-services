@@ -77,7 +77,7 @@
                     <select class="form-control form-select" name="division_id" id="division_id">
                       <option value=""> Divison</option>
                       @foreach($divisions as $division)
-                      <option value="{{$division->id}}" @if($division->id===$service->division_id) {{'selected'}} @endif>{{$division->bn_name}}</option>
+                      <option value="{{$division->id}}" @if($division->id===$service->division_id) {{'selected'}} @endif>{{$division->name}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -87,7 +87,7 @@
                     <select class="form-control form-select" name="district_id" id="district_id">
                       <option value="">District</option>
                       @foreach($districts as $district)
-                      <option value="{{$district->id}}" @if($district->id===$service->district_id) {{'selected'}} @endif>{{$district->bn_name}}</option>
+                      <option value="{{$district->id}}" @if($district->id===$service->district_id) {{'selected'}} @endif>{{$district->name}}</option>
                       @endforeach
 
                     </select>
@@ -97,7 +97,7 @@
                     <select class="form-control form-select" name="upazila_id" id="upazila_id">
                       <option value="">Upazila</option>
                       @foreach($upazilas as $upazila)
-                      <option value="{{$upazila->id}}" @if($upazila->id===$service->upazila_id) {{'selected'}} @endif>{{$upazila->bn_name}}</option>
+                      <option value="{{$upazila->id}}" @if($upazila->id===$service->upazila_id) {{'selected'}} @endif>{{$upazila->name}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -106,7 +106,7 @@
                     <select class="form-control form-select" name="union_id" id="union_id">
                       <option value="">Union</option>
                       @foreach($unions as $union)
-                      <option value="{{$union->id}}" @if($union->id===$service->union_id) {{'selected'}} @endif>{{$union->bn_name}}</option>
+                      <option value="{{$union->id}}" @if($union->id===$service->union_id) {{'selected'}} @endif>{{$union->name}}</option>
                       @endforeach
                     </select>
                   </div>

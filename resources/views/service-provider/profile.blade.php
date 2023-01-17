@@ -1,7 +1,7 @@
 
 @extends('./Frontend/layout/master')
 
-@section('title', 'Resendial services| Profile')
+@section('title', 'Online Home services| Profile')
 
 @section('content')
 
@@ -36,11 +36,11 @@
 							
 											<div class="form-group col-xl-6">
 												<label class="me-sm-2">Mobile Number</label>
-												<input class="form-control no_only" type="text" value="{{$user->provider->contact}}" name="contact"  required>
+												<input class="form-control no_only" type="text" value="{{$user->contact}}" name="contact"  required>
 											</div>
 											<div class="form-group col-xl-6">
 												<label class="me-sm-2">Profile Picture</label>
-												<input class="" type="file" name="profile_picture"  required>
+												<input class="" type="file" name="picture"  required>
 											</div>
 											<div class="col-xl-12">
 												<h5 class="form-title">Address</h5>
@@ -51,7 +51,7 @@
 												<select class="form-control form-select" name="division_id" id="division_id">
 													<option disabled selected>Select Division</option>
                           @foreach($divisions as $division)
-                          <option value="{{$division->id}}" @php if($division->id==$user->provider->division_id) { echo 'selected'; } @endphp >{{$division->bn_name}}</option>
+                          <option value="{{$division->id}}" @php if($division->id==$user->provider->division_id) { echo 'selected'; } @endphp >{{$division->name}}</option>
                           @endforeach
 												</select>
 											</div>
@@ -61,15 +61,15 @@
 													<option disabled selected>Select District</option>
 												</select>
 											</div>
-                      <div class="form-group col-xl-12">
+                      <div class="form-group col-xl-6">
 												<label class="me-sm-2">Address</label>
 												<input type="text" class="form-control" name="address_details" value="{{$user->provider->address_details}}">
 											</div>
-                      
 											<div class="form-group col-xl-6">
-												<label class="me-sm-2">Password</label>
-												<input class="form-control no_only" type="text" name="password"  required>
+												<label class="me-sm-2">Upload NID</label>
+												<input type="file" class="form-control" name="nid" >
 											</div>
+                      
 											<div class="form-group col-xl-12">
 												<button name="form_submit" id="form_submit" class="btn btn-primary ps-5 pe-5" type="submit">Update</button>
 											</div> 

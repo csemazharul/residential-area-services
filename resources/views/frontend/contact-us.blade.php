@@ -26,31 +26,42 @@
 						<div class="col-lg-8">
 							<div class="contact-queries">
 								<h4 class="mb-4">Drop your Queries</h4>
+								<!-- //session success message -->
+								@if(session()->has('success'))
+									<div class="alert alert-success">
+										{{ session()->get('success') }}
+									</div>
+									@endif
+									<form method="post" action="{{route('contact.store')}}">
 								<div class="row">
+								
+										@csrf
 									<div class="form-group col-xl-6">
 										<label class="me-sm-2">First Name</label>
-										<input class="form-control" type="text" >
+										<input class="form-control" type="text" name="first_name"  required>
 									</div>
 									<div class="form-group col-xl-6">
 										<label class="me-sm-2">Last Name</label>
-										<input class="form-control" type="text" >
+										<input class="form-control" type="text" name="last_name">
 									</div>
 									<div class="form-group col-xl-6">
 										<label class="me-sm-2">Email</label>
-										<input class="form-control" type="email" >
+										<input class="form-control" type="email" name="email" required>
 									</div>
 									<div class="form-group col-xl-6">
 										<label class="me-sm-2">Mobile Number</label>
-										<input class="form-control" type="text" >
+										<input class="form-control" type="text" name="phone" required >
 									</div>
 									<div class="form-group col-xl-12">
 										<label class="me-sm-2">Message</label>
-										<textarea class="form-control" rows="5"></textarea>
+										<textarea class="form-control" rows="5" name="message" required></textarea>
 									</div>
 									<div class="col-xl-12 mb-4">
-										<button class="btn btn-primary btn-lg ps-5 pe-5" type="submit">Update</button>
+										<button class="btn btn-primary btn-lg ps-5 pe-5" type="submit">Send</button>
 									</div>
+								
 								</div>
+								</form>
 							</div>
 						</div>
 						<div class="col-lg-4">
@@ -84,7 +95,7 @@
 									<i class="far fa-envelope"></i>
 									<div class="contact-data">
 										<h4>Email</h4>
-										<p><a href="https://residential-area-services.dev/l/email-protection" class="__cf_email__" data-cfemail="e0949295858c9993858c8ca08598818d908c85ce838f8d">support@gmail.com/a></p>
+										<p><a href="https://residential-area-services.dev/l/email-protection" class="__cf_email__" data-cfemail="e0949295858c9993858c8ca08598818d908c85ce838f8d">support@gmail.com</a></p>
 									</div>
 								</div>
 							</div>

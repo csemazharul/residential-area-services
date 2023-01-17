@@ -54,6 +54,7 @@ Route::get('get-upazila/{district_id}', [HelperController::class, 'getUpazila'])
 Route::get('get-union/{upazila_id}', [HelperController::class, 'getUnion'])->name('get-union');
 Route::get('/categories', [PageController::class, 'categories'])->name('categories');
 Route::get('/location/services/search', [PageController::class, 'searchServiceWithLocation'])->name('services.search');
+Route::get('/service/services/search', [PageController::class, 'searchServiceTitleLocation'])->name('services.search.title');
 Route::resource('review', ReviewController::class);
 Route::post('add-to-favorite', [PageController::class, 'addToFavorite'])->name('add-to-favorite');
 Route::post('contact/store', [ContactController::class, 'contactStore'])->name('contact.store');

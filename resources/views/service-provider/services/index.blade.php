@@ -60,11 +60,11 @@
                                 <div class="col-lg-4 col-md-6 d-flex">
                                     <div class="service-widget flex-fill">
                                         <div class="service-img">
-                                            <a href="service-details.html">
+                                            <a href="{{url('/services/'.$service->id)}}">
                                                 <img
                                                     class="img-fluid serv-img img-w"
                                                     alt="Service Image"
-                                                    src="{{asset('storage/uploads/'.$image) }}"
+                                                    src="{{asset('uploads/'.$image) }}"
                                                    
                                                 />
                                             </a>
@@ -76,14 +76,14 @@
                                                 <div class="cate-list">
                                                     <a
                                                         class="bg-yellow"
-                                                        href="service-details.html">{{$service->category->name}}</a
+                                                        href="{{url('/services/'.$service->id)}}">{{$service->category->name}}</a
                                                     >
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="service-content">
                                             <h3 class="title">
-                                                <a href="service-details.html">{{$service->serviceDetails->name}}</a>
+                                                <a href="{{url('/services/'.$service->id)}}">{{$service->serviceDetails->name}}</a>
                                             </h3>
                                             <div class="rating">
                                                 <i
@@ -142,29 +142,27 @@
                              
 
                                 <!-- Pagination Links -->
-                                <!-- <div class="pagination">
+                                <div class="pagination">
+                                @if ($services->lastPage() > 1)
                                     <ul>
-                                        <li class="active">
-                                            <a href="javascript:void(0);">1</a>
+                                        <li class="{{ ($services->currentPage() == 1) ? 'disabled' : '' }}">
+                                            <a href="{{ $services->url(1) }}">
+                                                <i class="fas fa-angle-left"></i></a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0);">2</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">3</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">4</a>
-                                        </li>
-                                        <li class="arrow">
-                                            <a href="javascript:void(0);"
-                                                ><i
-                                                    class="fas fa-angle-right"
-                                                ></i
-                                            ></a>
+                                        @for ($i = 1; $i <= $services->lastPage(); $i++)
+                                            <li class="{{ ($services->currentPage() == $i) ? 'active' : '' }}">
+                                                <a href="{{ $services->url($i) }}">{{ $i }}</a>
+                                            </li>
+                                        @endfor
+                                        <li class="{{ ($services->currentPage() == $services->lastPage()) ? 'arrow' : '' }}">
+                                            <a href="{{ $services->url($services->currentPage()+1) }}">
+                                                <i class="fas fa-angle-right" ></i> </a>
                                         </li>
                                     </ul>
-                                </div> -->
+                                @endif
+
+                                </div>
+                                <!-- {{ $services->links() }} -->
                             </div>
                         </div>
     </div>

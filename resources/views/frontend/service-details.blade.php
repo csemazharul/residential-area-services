@@ -336,6 +336,7 @@ fieldset[disabled] a.btn {
 
 </style>
 @endpush
+
 @section('content')
 
 <div class="content">
@@ -361,10 +362,32 @@ fieldset[disabled] a.btn {
                                     </div>
                                     <address class="service-location">
                                         <i class="fas fa-location-arrow"></i>
-                                        {{$service->district->bn_name}}, {{$service->upazila->bn_name}}
+                                        {{$service->district->name}}, {{$service->upazila->name}}
                                     </address>
                                     <div class="rating">
-                                        <i class="fas fa-star filled"></i>
+
+                                    @if(isset($service->review->average_rating))
+												@php
+													$ratings = $service->review->average_rating;
+													$ratings = round($ratings);
+												@endphp
+												@for($i=1; $i<=$ratings; $i++)
+													<i class="fas fa-star filled"></i>
+												@endfor
+												@for($i=1; $i<=(5-$ratings); $i++)
+													<i class="fas fa-star"></i>
+												@endfor
+												<span class="d-inline-block average-rating">({{$ratings}})</span>
+												@else
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i> 
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i> 
+												<i class="fas fa-star"></i>
+												<span class="d-inline-block average-rating">(0)</span>
+												@endif
+
+                                        <!-- <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
@@ -372,7 +395,7 @@ fieldset[disabled] a.btn {
                                         <span
                                             class="d-inline-block average-rating"
                                             >(5)</span
-                                        >
+                                        > -->
                                     </div>
                                     <div class="service-cate">
                                         <a href="{{route('category.services',['category'=>$service->category->id])}}">{{$service->category->name}}</a>
@@ -384,14 +407,14 @@ fieldset[disabled] a.btn {
                                     >
                                 @php
                               
-                                    $service_image = preg_replace('/[\]["]/i', '', $service->image);
+                                    $service_image = preg_replace('/[\]["]/i', '', $service->serviceDetails->image);
                                     $images = explode(',', str_replace( '\\', '', $service_image ));
                              
                                 @endphp
                                 @foreach($images as $image)
                                         <div class="item">
                                             <img
-                                                src="{{asset('storage/uploads/'.$image) }}"
+                                                src="{{asset('uploads/'.$image) }}"
                                                 alt=""
                                                 class="img-fluid"
                                             />
@@ -418,7 +441,7 @@ fieldset[disabled] a.btn {
                                                 >Overview</a
                                             >
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a
                                                 class="nav-link"
                                                 id="pills-profile-tab"
@@ -429,13 +452,13 @@ fieldset[disabled] a.btn {
                                                 aria-selected="false"
                                                 >Services Offered</a
                                             >
-                                        </li>
+                                        </li> -->
                                         <li class="nav-item">
                                             <a
                                                 class="nav-link"
                                                 id="review-section-tab"
                                                 data-toggle="pill"
-                                                href="#review-section"
+                                                href="#pills-home"
                                                 role="tab"
                                                 aria-controls="review-section"
                                                 aria-selected="false"
@@ -454,9 +477,7 @@ fieldset[disabled] a.btn {
                                                 class="card service-description"
                                             >
                                                 <div class="card-body">
-                                                    <h5 class="card-title">
-                                                        Service Details
-                                                    </h5>
+                                                
                                                     <p class="mb-0">
                                                         {!!$service->serviceDetails->description!!}
                                                     </p>
@@ -538,7 +559,7 @@ fieldset[disabled] a.btn {
                                                                 ></i>
                                                                 <span
                                                                     class="d-inline-block average-rating"
-                                                                    >(5.0)</span
+                                                                    >(1.0)</span
                                                                 >
                                                             </div>
                                                         </div>
@@ -556,7 +577,8 @@ fieldset[disabled] a.btn {
                     </div>
                         @endif
                             @if(isset(Auth::user()->id))
-                            <form id="feedback"  action="{{route('review.store')}}" method="post" id="review-section">
+                            <form id="feedback"  action="{{route('review.store')}}" method="post"   class="tab-pane fade show active"
+                                            role="tabpanel" id="review-section">
                             @csrf   
                             <div class="pinfo">Review title</div>
                                 
@@ -613,7 +635,7 @@ fieldset[disabled] a.btn {
                                         ">
                                             <img
                                                 class="rounded-circle"
-                                                src="assets/img/customer/user-01.jpg"
+                                                src="{{asset('uploads/profile_picture/'.$review->user->picture)}}"
                                                 alt=""
                                             />
                                         </div>
@@ -621,7 +643,7 @@ fieldset[disabled] a.btn {
                                             <h5>{{$review->user->name}}</h5>
                                             <div class="review-date">
                                                 <!-- August 06, 2020 20:07 pm -->
-                                                {{date('F d, Y H:i a', strtotime($review->created_at))}}
+                                                {{$review->created_at->diffForHumans()}}
                                             </div>
                                             <p class="mb-0">{{$review->title}}</p>
                                         </div>
@@ -666,7 +688,7 @@ fieldset[disabled] a.btn {
                                                 <img
                                                     class="img-fluid serv-img"
                                                     alt="Service Image"
-                                                    style="width:298px;height:182px" src="{{asset('storage/uploads/'.$image) }}"
+                                                    style="width:298px;height:182px" src="{{asset('uploads/'.$image) }}"
                                                 />
                                             </a>
                                             <div class="item-info">
@@ -723,8 +745,8 @@ fieldset[disabled] a.btn {
                                                     <span
                                                         class="col ser-location"
                                                         ><span
-                                                            >{{$service->district->bn_name}},
-                                                            {{$service->upazila->bn_name}}</span
+                                                            >{{$service->district->name}},
+                                                            {{$service->upazila->name}}</span
                                                         >
                                                         <i
                                                             class="fas fa-map-marker-alt ms-1"
@@ -740,9 +762,9 @@ fieldset[disabled] a.btn {
                         </div>
                         <div class="col-lg-4 theiaStickySidebar">
                             <div class="sidebar-widget widget">
-                                <div class="service-amount">
+                                <!-- <div class="service-amount">
                                     <span>৳ {{$service->price}}</span>
-                                </div>
+                                </div> -->
                                 <div class="service-book">
                                     <a
                                         href="{{route('service.book', $service->id)}}"
@@ -754,30 +776,7 @@ fieldset[disabled] a.btn {
                             </div>
                             <div class="card provider-widget clearfix">
                                 <div class="card-body">
-                                    <h5 class="card-title">Service Provider</h5>
-                                    <div class="about-author">
-                                        <div class="about-provider-img">
-                                            <div class="provider-img-wrap">
-                                                <a href="javascript:void(0);">
-                                                    <img
-                                                        class="img-fluid rounded-circle"
-                                                        alt=""
-                                                        src="assets/img/provider/provider-01.jpg"
-                                                    />
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="provider-details">
-                                            <a
-                                                href="javascript:void(0);"
-                                                class="ser-provider-name"
-                                                >{{$service->provider->name}}</a
-                                            >
-                                            <p class="text-muted mb-1">
-                                                Member Since {{$service->provider->created_at}}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <h5 class="card-title">Provider Contact Information</h5>
                                     <hr />
                                     <div class="provider-info">
                                         <p class="mb-1">
@@ -786,15 +785,30 @@ fieldset[disabled] a.btn {
                                                 ><span
                                                     class="__cf_email__"
                                                     data-cfemail="54203c3b3935273c31262e3631263314312c35392438317a373b39"
-                                                    ></span
-                                                >{{$service->provider->email}}</a
+                                                    >{{$service->provider->email}}</span
+                                                ></a
                                             >
                                         </p>
                                         <p class="mb-0">
                                             <i class="fas fa-phone-alt"></i>
-                                            {{$service->providerDetails->contact}}
+                                            {{$service->provider->contact}}
                                         </p>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="card available-widget">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                    Available services
+                                    </h5>
+                                    <ul>
+                                        @foreach($packages as $package)
+                                        <li>
+                                            <span>{{$package->name}}</span> ৳ {{$package->price}}
+                                        </li>
+                                        @endforeach
+                                        
+                                    </ul>
                                 </div>
                             </div>
                           

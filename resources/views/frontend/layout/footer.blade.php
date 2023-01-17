@@ -34,11 +34,11 @@
 						<div class="col-lg-3 col-md-6">
 							<!-- Footer Widget -->
 							<div class="footer-widget footer-contact">
-								<h2 class="footer-title">Contact </h2>
+								<h2 class="footer-title">{{__('footer.foo_contact')}} </h2>
 								<div class="footer-contact-info">
 									<div class="footer-address">
 										<span><i class="fa fa-map-marker"></i></span>
-										<p>CTG, Bangladesh.</p>
+										<p>{{__('footer.foo_addr')}}</p>
 									</div>
 									<p><i class="fa fa-mobile"></i> +88 01822334412</p>
 									<p class="mb-0"><i class="fas fa-envelope"></i> <a href="https://html.truelysell.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e4a4c4b5b52474d5b52527e5b465f534e525b105d5153">support@gmail.com</a></p>
@@ -52,9 +52,9 @@
 							</div>
 							<!-- Footer Widget -->
 							<div class="footer-widget">
-								<h2 class="footer-title">Follow Us</h2>
+								<h2 class="footer-title">{{__('footer.foo_follow')}}</h2>
 								<div class="subscribe-form">
-                                    <input type="email" class="form-control" placeholder="Enter your email">
+                                    <input type="email" class="form-control" placeholder="{{__('footer.foo_contact_placeholder')}}">
                                     <a href="{{route('services')}}" class="btn footer-btn d-flex align-items-center justify-content-center">
                                         <i class="fas fa-paper-plane"></i>
                                     </a>
@@ -91,7 +91,7 @@
 						<div class="row">
 							<div class="col-md-6 col-lg-6">
 								<div class="copyright-text">
-									<p class="mb-0">&copy; 2023 <a href="{{url('/')}}">Home services </a>. All rights reserved.</p>
+									<p class="mb-0">&copy; {{__('footer.foo_copy')}}</p>
 								</div>
 							</div>
 							<div class="col-md-6 col-lg-6">
@@ -99,10 +99,7 @@
 								<div class="copyright-menu">
 									<ul class="policy-menu">
 										<li>
-											<a href="term-condition.html">Terms and Conditions</a>
-										</li>
-										<li>
-											<a href="privacy-policy.html">Privacy</a>
+											<a href="term-condition.html">{{__('footer.foo_term_condition')}}</a>
 										</li>
 									</ul>
 								</div>

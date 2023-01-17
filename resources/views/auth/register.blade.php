@@ -3,6 +3,7 @@
 @section('title', 'Register')
 
 @section('content')
+
 	<!-- User Register Modal -->
 	<div class="" id="user-register" style="padding:5px" data-keyboard="false" data-backdrop="static">
 		<div class="modal-dialog modal-dialog-centered">
@@ -13,7 +14,8 @@
 					<div class="login-header">
 						<h3>Register</h3>
 					</div>
-					<form action="{{ route('register') }}">
+					<form action="{{ route('register') }}" method="POST">
+					@csrf
 						<div class="form-group form-focus">
 							<label class="focus-label">Name</label>
 							<input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="Enter the name">

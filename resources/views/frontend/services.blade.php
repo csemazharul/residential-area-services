@@ -26,32 +26,30 @@
 						<div class="card filter-card">
 							<div class="card-body">
 								<h4 class="card-title mb-4">Search Filter</h4>
-								<form id="search_form">
+								<form id="search_form" action="{{route('services.search.title')}}">
 									<div class="filter-widget">
 										<div class="filter-list">
 											<h4 class="filter-title">Keyword</h4>
-											<input type="text" class="form-control" placeholder="What are you looking for?">
+											<input type="text" name="keyword" class="form-control" placeholder="What are you looking for?">
 										</div>
 										<div class="filter-list">
 											<h4 class="filter-title">Sort By</h4>
-											<select class="form-control selectbox select form-select">
-												<option>Sort By</option>
-												<option>Price Low to High</option>
-												<option>Price High to Low</option>
-												<option>Newest</option>
+											<select  name="order_by" class="form-control selectbox select form-select">
+												<option value="asc">Ascending</option>
+												<option value="dsc">Descending </option>
 											</select>
 										</div>
 										<div class="filter-list">
 											<h4 class="filter-title">Categories</h4>
-											<select class="form-control form-control selectbox select form-select">
-												<option>All Categories</option>
+											<select name="category_id" class="form-control form-control selectbox select form-select">
+												<option disabled selected>All Categories</option>
 												@foreach($categories as $category)
 													<option value="{{$category->id}}">{{$category->name}}</option>
 												@endforeach
 											</select>
 										</div>
 									</div>
-									<button class="btn btn-primary pl-5 pr-5 btn-block get_services w-100" type="button">Search</button>
+									<button class="btn btn-primary pl-5 pr-5 btn-block get_services w-100" type="submit">Search</button>
 								</form>
 							</div>
 						</div>
@@ -80,7 +78,7 @@
 									<div class="service-widget">
 										<div class="service-img">
 											<a href="{{url('/services/'.$service->id)}}">
-												<img class="img-fluid serv-img" alt="Service Image" style="width:298px;height:182px" src="{{asset('storage/uploads/'.$image) }}">
+												<img class="img-fluid serv-img" alt="Service Image" style="width:298px;height:182px" src="{{asset('uploads/'.$image) }}">
 											</a>
 											<div class="fav-btn">
 												<button id="addToFav" data-id="{{$service->id}}" data-favor="{{$service->is_favorite}}" class="fav-icon @if($service->is_favorite==1) {{'favourite'}} @endif">
@@ -101,20 +99,40 @@
 												<a href="{{url('/services/'.$service->id)}}">{{$service->serviceDetails->name}}</a>
 											</h3>
 											<div class="rating">
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star filled"></i>
-												<i class="fas fa-star filled"></i>
+												@if(isset($service->review->average_rating))
+												@php
+													$ratings = $service->review->average_rating;
+													$ratings = round($ratings);
+												@endphp
+												@for($i=1; $i<=$ratings; $i++)
+													<i class="fas fa-star filled"></i>
+												@endfor
+												@for($i=1; $i<=(5-$ratings); $i++)
+													<i class="fas fa-star"></i>
+												@endfor
+												<span class="d-inline-block average-rating">({{$ratings}})</span>
+												@else
 												<i class="fas fa-star"></i>
-												<span class="d-inline-block average-rating">(4.3)</span>
+												<i class="fas fa-star"></i> 
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i> 
+												<i class="fas fa-star"></i>
+												<span class="d-inline-block average-rating">(0)</span>
+												@endif
+												<!-- <i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star"></i> -->
+											
 											</div>
 											<div class="user-info">
 												<div class="row">
 													<span class="col-auto ser-contact"><i class="fas fa-phone me-1"></i>
-														<span>xxxxxxxx49</span>
+														<span>{{$service->provider->contact}}</span>
 													</span>
 													<span class="col ser-location">
-														<span>{{$service->district->bn_name}}, {{$service->upazila->bn_name}}</span> <i class="fas fa-map-marker-alt ms-1"></i>
+														<span>{{$service->district->name}}</span> <i class="fas fa-map-marker-alt ms-1"></i>
 													</span>
 												</div>
 											</div>

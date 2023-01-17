@@ -1,7 +1,7 @@
 
 @extends('./Frontend/layout/master')
 
-@section('title', 'Resendial services')
+@section('title', 'Online Home services')
 @push('css')
 	<style>
 		.s-w-17{
@@ -38,9 +38,9 @@
 												<div class="form-group mb-0">
 													
 													<select class="form-control" name="division_id" id="division_id">
-														<option selected disabled>SELECT DIVISION</option>
+														<option selected disabled>{{__('home.home_division')}}</option>
 														@foreach($divisions as $division)
-															<option value="{{$division->id}}">{{$division->bn_name}}</option>
+															<option value="{{$division->id}}">{{$division->name}}</option>
 														@endforeach
 													</select>
 												</div>
@@ -48,26 +48,26 @@
 											<div class="s-w-17">
 												<div class="form-group mb-0">
 												<select class="form-control" name="district_id" id="district_id">
-														<option selected disabled>SELECT DISTRICT</option>
+														<option selected disabled>{{__('home.home_district')}}</option>
 													</select>
 												</div>
 											</div>
 											<div class="s-w-17">
 												<div class="form-group mb-0">
 												<select class="form-control" name="upazila_id" id="upazila_id">
-														<option selected disabled>SELECT UPAZILA</option>
+														<option selected disabled>{{__('home.home_upazila')}}</option>
 													</select>
 												</div>
 											</div>
 											<div class="s-w-17">
 												<div class="form-group mb-0">
 												<select class="form-control" name="union_id" id="union_id">
-														<option selected disabled>SELECT UNION</option>
+														<option selected disabled>{{__('home.home_union')}}</option>
 													</select>
 												</div>
 											</div>
 											<div class="s-btn s-w-17">
-												<button class="btn search_service" ><i class="fa fa-search"></i>Search</button>
+												<button class="btn search_service" ><i class="fa fa-search"></i>{{__('home.home_search')}}</button>
 											</div>
 										</form>
 									</div>
@@ -87,12 +87,12 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="top-section-head aos" data-aos="fade-up">
-							<h2>Service Categories</h2>
+							<h2>{{__('home.home_category_lebel')}}</h2>
 						</div>
 						<div class="section-heading section-heading-three text-center aos" data-aos="fade-up">
-							<span>What do you need to find?</span>
+							<span>{{__('home.home_category_find_lebel')}}</span>
 							<div class="section-three">
-								<h2>Service Categories</h2>
+								<h2>{{__('home.home_service_cat')}}</h2>
 							</div>
 						</div>
 						<div class="catsec aos" data-aos="fade-up">
@@ -116,7 +116,7 @@
 							</div>
 						</div>
 						<div class="sell-view-btn text-center aos" data-aos="fade-up">
-							<a href="{{route('services')}}" class="btn btn-view ">View All <i class="fas fa-long-arrow-alt-right"></i></a>
+							<a href="{{route('services')}}" class="btn btn-view ">{{__('home.view_all')}} <i class="fas fa-long-arrow-alt-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -130,470 +130,91 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="top-section-head popular-head aos" data-aos="fade-up">
-							<h2>Most Popular</h2>
+							<h2>{{__('home.popular_label')}}</h2>
 						</div>
 						<div class="section-heading section-heading-three text-center aos" data-aos="fade-up">
-							<span>Explore the greates our services. You won’t be disappointed</span>
+							<span>{{__('home.popular_service_find_lebel')}}</span>
 							<div class="section-three">
-								<h2>Most Popular Services</h2>
+								<h2>{{__('home.popular_service_lebel')}}</h2>
 							</div>
 						</div>
 						<div class="service-carousel arrow-service aos" data-aos="fade-up">
 							<div class="categories-slider owl-carousel owl-theme">
+								@foreach ($services as $service)
+								@php  
+															$service_image = preg_replace('/[\]["]/i', '', $service->serviceDetails->image);
+															$images = explode(',', str_replace( '\\', '', $service_image ));
+													@endphp
+
 								<div class="service-widget service-box">
 									<div class="service-img">
 										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-16.jpg">
+											<img class="img-fluid serv-img" alt="Service Image" style="width:265px;height:188px" src="{{asset('uploads/'.$images[0]) }}">
 										</a>
 										<div class="item-info">
-											<div class="service-user">	
-												<span class="service-price">$25</span>
-											</div>
+									
 											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Cleaning</a>
+												<a class="bg-yellow" href="service-details.html">{{$service->category->name}}</a>
 											</div>
 										</div>
 									</div>
 									<div class="service-content">
 										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-02.jpg" alt="">
+											<img src="{{asset('uploads/profile_picture/'.$service->provider->picture) }}" alt="">
 											<ul>
-												<li>Thomas Herzberg</li>
+												<li>{{$service->provider->name}}</li>
 												<li class="rating">
-													<i class="fas fa-star filled"></i>
+													<!-- <i class="fas fa-star filled"></i>
 													<i class="fas fa-star filled"></i>
 													<i class="fas fa-star filled"></i>
 													<i class="fas fa-star filled"></i>
 													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(5)</span>
+													<span class="d-inline-block average-rating">(5)</span> -->
+													@if(isset($service->review->average_rating))
+												@php
+													$ratings = $service->review->average_rating;
+													$ratings = round($ratings);
+												@endphp
+												@for($i=1; $i<=$ratings; $i++)
+													<i class="fas fa-star filled"></i>
+												@endfor
+												@for($i=1; $i<=(5-$ratings); $i++)
+													<i class="fas fa-star"></i>
+												@endfor
+												<span class="d-inline-block average-rating">({{$ratings}})</span>
+												@else
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i> 
+												<i class="fas fa-star"></i>
+												<i class="fas fa-star"></i> 
+												<i class="fas fa-star"></i>
+												<span class="d-inline-block average-rating">(0)</span>
+												@endif
 												</li>
 											</ul>
 										</div>
 										<h3 class="title">
-											<a href="service-details.html">Cleaning Service</a>
+											<a href="{{url('/services/'.$service->service_id)}}">{{$service->serviceDetails->name}}</a>
 										</h3>
-										<span>Car wash is a facility used to clean the exterior and, in some cases....</span>
+										<span></span>
 										<div class="user-info">
 											<div class="user-info-box">	
 												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i> 
-													<span>609-639-6458</span>
+													<span>{{$service->provider->contact}}</span>
 												</span>
 												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Wayne, New Jersey</span> 
+													<span>{{$service->district->name}}, {{$service->upazila->name}}</span> 
 												</span>
 											</div>
 										</div>
 									</div>
 								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-17.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$50</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Automobile</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-03.jpg" alt="">
-											<ul>
-												<li>Hendry Evangline</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(4.5)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Computer & AMC Service</a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>0699 149 25 07</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Hanover, Maryland</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-18.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$45</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Electrical</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-01.jpg" alt="">
-											<ul>
-												<li>Hilary Desouza</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(5)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Car wash</a>
-										</h3>
-										<span>Car wash is a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>0660 616 82 76</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Kalispell, Montana</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-19.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$14</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Car Wash</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-05.jpg" alt="">
-											<ul>
-												<li>Thomas Herzberg</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(0)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Electrical Service</a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>(07) 4516 0420</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Electra, Texas</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-17.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$100</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Cleaning</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-06.jpg" alt="">
-											<ul>
-												<li>Hilary Desouza</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(3)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">House Cleaning Services </a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>442 82 780</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Sylvester, Georgia</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-19.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$80</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Computer</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-07.jpg" alt="">
-											<ul>
-												<li>Thomas Herzberg</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(0)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Computer & AMC Service</a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>514-756-6436</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Los Angeles, California</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-16.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$5</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Interior</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-08.jpg" alt="">
-											<ul>
-												<li>Hilary Desouza</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(4)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Interior Designing </a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>030 44 89 44</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Hanover, Maryland</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-18.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$75</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Construction</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-09.jpg" alt="">
-											<ul>
-												<li>Thomas Herzberg</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(2)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Building Construction </a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>792 5457</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Burr Ridge, Illinois</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-19.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$500</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Painting</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-10.jpg" alt="">
-											<ul>
-												<li>Hilary Desouza</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(3)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Commercial Painting </a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>28-62-76-32</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Huntsville, Alabama</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="service-widget service-box">
-									<div class="service-img">
-										<a href="service-details.html">
-											<img class="img-fluid serv-img" alt="Service Image" src="resources/frontend/assets/img/services/service-18.jpg">
-										</a>
-										<div class="item-info">
-											<div class="service-user">
-												<span class="service-price">$150</span>
-											</div>
-											<div class="cate-list">
-												<a class="bg-yellow" href="service-details.html">Plumbing</a>
-											</div>
-										</div>
-									</div>
-									<div class="service-content">
-										<div class="service-rate">
-											<img src="resources/frontend/assets/img/customer/user-05.jpg" alt="">
-											<ul>
-												<li>Thomas Herzberg</li>
-												<li class="rating">
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star filled"></i>
-													<i class="fas fa-star "></i>
-													<span class="d-inline-block average-rating">(4)</span>
-												</li>
-											</ul>
-										</div>
-										<h3 class="title">
-											<a href="service-details.html">Plumbing Services </a>
-										</h3>
-										<span>This a facility used to clean the exterior and, in some cases....</span>
-										<div class="user-info">
-											<div class="user-info-box">	
-												<span class="col-auto ser-contact"><i class="fas fa-phone-alt"></i>
-													<span>0680 880 20 45</span>
-												</span>
-												<span class="col ser-location"><i class="fas fa-map-marker-alt ms-1"></i>
-													<span>Richmond, Virginia</span> 
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
+								@endforeach
+		
 							</div>
 						</div>
 						<div class="sell-view-btn text-center aos" data-aos="fade-up">
-							<a href="{{route('services')}}" class="btn btn-view">View All <i class="fas fa-long-arrow-alt-right"></i></a>
+							<a href="{{route('services')}}" class="btn btn-view">{{__('home.view_all')}} <i class="fas fa-long-arrow-alt-right"></i></a>
 						</div>
 					</div>
 				</div>
@@ -610,9 +231,8 @@
 							<h2>How IT Works</h2>
 						</div>
 						<div class="section-heading section-heading-three text-center aos" data-aos="fade-up">
-							<span>Aliquam lorem ante, dapibus in, viverra quis</span>
 							<div class="section-three">
-								<h2>How It Works</h2>
+								<h2>{{__('home.how_to_step_work')}}</h2>
 							</div>	
 						</div>
 						<div class="howworksec aos" data-aos="fade-up">
@@ -620,39 +240,39 @@
 								<div class="col-lg-4 col-md-6">
 									<div class="howwork work-box">
 										<div class="step-number">
-											Step 1
+										{{__('home.step_1')}}
 										</div>
 										<div class="iconround d-flex align-items-center justify-content-center">
 											<img src="resources/frontend/assets/img/work-icon-10.png" alt="">
 										</div>
-										<h3>Choose What To Do</h3>
-										<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra nulla ut metus varius laoreet.</p>
+										<h3>{{__('home.how_to_work_lebel_1')}}</h3>
+										<p></p>
 										<h2>01</h2>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-6">
 									<div class="howwork work-box hiw-arrow">
 										<div class="step-number">
-											Step 2
+										{{__('home.step_2')}}
 										</div>
 										<div class="iconround d-flex align-items-center justify-content-center">
 											<img src="resources/frontend/assets/img/work-icon-11.png" alt="">
 										</div>
-										<h3>Find What You Want</h3>
-										<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra nulla ut metus varius laoreet.</p>
+										<h3>{{__('home.how_to_work_lebel_2')}}</h3>
+										<p></p>
 										<h2>02</h2>
 									</div>
 								</div>
 								<div class="col-lg-4 col-md-6">
 									<div class="howwork work-box">
 										<div class="step-number">
-											Step 3
+										{{__('home.step_3')}}
 										</div>
 										<div class="iconround d-flex align-items-center justify-content-center">
 											<img src="resources/frontend/assets/img/work-icon-12.png" alt="">
 										</div>
-										<h3>Amazing Places</h3>
-										<p>Aliquam lorem ante, dapibus in, viverra quis, feugiat Phasellus viverra nulla ut metus varius laoreet.</p>
+										<h3>{{__('home.how_to_work_lebel_3')}}</h3>
+										<p></p>
 										<h2>03</h2>
 									</div>
 								</div>

@@ -12,7 +12,7 @@
 		
 				<div class="modal-body">
 					<div class="login-header">
-						<h3>Login <span></span></h3>
+						<h3>Log In <span></span></h3>
 					</div>
 					<form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -22,7 +22,7 @@
 						</div>
 						<div class="form-group form-focus">
 							<label class="focus-label">Password</label>
-							<input type="password" name="password" class="form-control" placeholder="********">
+							<input type="password" name="password" class="form-control" placeholder="Enter the password">
 						</div>
 						<div class="text-end">	
 						</div>

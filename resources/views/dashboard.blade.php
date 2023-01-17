@@ -12,30 +12,57 @@
 				<div class="row">
 					<div class="col-xl-3 col-md-4">
 						@include('user.sidebar')
-					</div>
+					</div>  
+
 					<div class="col-xl-9 col-md-8">
 						<div class="row">
 							<div class="col-lg-4">
-								<a href="user-bookings.html" class="dash-widget dash-bg-1">
-									<span class="dash-widget-icon">2</span>
+								<a href="{{route('user.bookings')}}" class="dash-widget dash-bg-2">
+									<span class="dash-widget-icon">{{$data['pending']}}</span>
 									<div class="dash-widget-info">
-										<span>Bookings</span>
+										<span>Pending Bookings</span>
 									</div>
 								</a>
 							</div>
 							<div class="col-lg-4">
 								<a href="user-reviews.html" class="dash-widget dash-bg-2">
-									<span class="dash-widget-icon">0</span>
+									<span class="dash-widget-icon">{{$data['approved']}}</span>
 									<div class="dash-widget-info">
-										<span>Reviews</span>
+										<span>Approved Bookings</span>
 									</div>
 								</a>
 							</div>
 							<div class="col-lg-4">
-								<a href="notifications.html" class="dash-widget dash-bg-3">
-									<span class="dash-widget-icon">1</span>
+								<a href="notifications.html" class="dash-widget dash-bg-2">
+									<span class="dash-widget-icon">{{$data['inprogress']}}</span>
 									<div class="dash-widget-info">
-										<span>Notification</span>
+										<span>Inprogress Bookings</span>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-4">
+								<a href="{{route('user.bookings')}}" class="dash-widget dash-bg-2">
+									<span class="dash-widget-icon">{{$data['completed']}}</span>
+									<div class="dash-widget-info">
+										<span>Complete Bookings</span>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-4">
+								<a href="user-reviews.html" class="dash-widget dash-bg-2">
+									<span class="dash-widget-icon">{{$data['cancelled']}}</span>
+									<div class="dash-widget-info">
+										<span>Cancel Bookings</span>
+									</div>
+								</a>
+							</div>
+							<div class="col-lg-4">
+								<a href="notifications.html" class="dash-widget dash-bg-2">
+									<span class="dash-widget-icon">{{$data['review']}}</span>
+									<div class="dash-widget-info">
+										<span>Reviews</span>
 									</div>
 								</a>
 							</div>
