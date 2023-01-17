@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'contact',
+        'picture'
     ];
 
     /**
@@ -46,5 +48,10 @@ class User extends Authenticatable
     public function role()
     {
         return $this->hasOne('App\Models\Role');
+    }
+
+    public function provider()
+    {
+        return $this->hasOne('App\Models\Provider');
     }
 }
