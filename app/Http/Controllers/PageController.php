@@ -19,9 +19,9 @@ class PageController extends Controller
     {
         $divisions = Divisions::all();
         $categories = Category::with('services')->get();
-        $services = Services::with('serviceDetails', 'category', 'district', 'upazila', 'provider', 'providerDetails','review')->orderBy('id', 'desc')->take(6)->get();
-     
-        return view('welcome', compact('divisions', 'categories','services'));
+        $services = Services::with('serviceDetails', 'category', 'district', 'upazila', 'provider', 'providerDetails', 'review')->orderBy('id', 'desc')->take(6)->get();
+
+        return view('welcome', compact('divisions', 'categories', 'services'));
     }
 
     public function contactUs()
@@ -80,12 +80,31 @@ class PageController extends Controller
         $category = $service->category_id;
         $relatedServices = Services::with('serviceDetails', 'category', 'district', 'upazila', 'provider', 'providerDetails')->where('category_id', $category)->get();
         $providerId = $service->provider->id;
-     
+
         $packages = Packages::where('category_id', $service->category_id)->where('provider_id', $providerId)->get();
         return view('frontend.service-details', compact('service', 'relatedServices', 'reviews', 'packages'));
     }
 
+    public function searchServiceTitleLocation(Request $request){
+        $keyword = $request->keyword;
+        $categoryId = $request->category_id;
+        $orderBy = $request->order_by;
+      
+        $services = Services::with('serviceDetails', 'category', 'district', 'upazila', 'provider', 'providerDetails')->whereHas('serviceDetails', function($query) use ($keyword){
+            $query->where('name', 'like', '%'.$keyword.'%');
+        });
 
+        if (!empty($categoryId)) {
+            $services->where('category_id', $categoryId);
+        }
+     
+        if(!empty($orderBy)){
+            $services->orderBy('id', $orderBy);
+        }
+        $services = $services->get();
+        return view('frontend.serach-location-service', compact('services'));
+
+    }
 
     public function searchServiceWithLocation(Request $request)
     {
@@ -110,6 +129,7 @@ class PageController extends Controller
             $services->where('union_id', $unionId);
         }
         $services = $services->get();
+        // return $services;
         return view('frontend.search-service', compact('services'));
     }
 
