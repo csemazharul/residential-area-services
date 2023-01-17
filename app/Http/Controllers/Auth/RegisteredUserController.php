@@ -33,22 +33,30 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+       
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        // return $user;
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])->assignRole( $request->role );
+        ])->assignRole($request->role);
+
 
         event(new Registered($user));
 
         Auth::login($user);
+        if($request->role === 'service-provider'){
+            return redirect(route('service-provider.dashboard'));
+        }else if($request->role === 'user'){
+            return redirect(route('user.dashboard'));
+        }
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
     }
 }
